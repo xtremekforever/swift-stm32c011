@@ -5,4 +5,5 @@ include build.mk
 LIBROOT := .
 
 # Only build library by default
+.PHONY: all
 all: build

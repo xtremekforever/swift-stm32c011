@@ -19,7 +19,7 @@ OBJDUMP  = arm-none-eabi-objdump
 SIZE     = arm-none-eabi-size
 DEMANGLE = swift demangle
 
-.PHONY: all build link map lst size bin flash clean
+.PHONY: build link map lst size bin flash clean
 build:
 	@echo "compiling (please be patient, this may take a few minutes)..."
 	swift build \
