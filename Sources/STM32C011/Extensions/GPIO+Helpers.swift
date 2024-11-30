@@ -25,11 +25,11 @@ extension GPIO {
     }
 
     public struct Configuration {
-        var mode: Mode
-        var outputType: OutputType
-        var outputSpeed: OutputSpeed
-        var pull: Pull
-        var alternateFunction: UInt32
+        public var mode: Mode
+        public var outputType: OutputType
+        public var outputSpeed: OutputSpeed
+        public var pull: Pull
+        public var alternateFunction: UInt32
 
         public init(
             mode: Mode,
