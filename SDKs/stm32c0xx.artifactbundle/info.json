@@ -1,0 +1,14 @@
+{
+  "artifacts": {
+    "stm32c0xx": {
+      "version": "0.0.1",
+      "type": "swiftSDK",
+      "variants": [
+        {
+          "path": "."
+        }
+      ]
+    }
+  },
+  "schemaVersion": "1.0"
+}
