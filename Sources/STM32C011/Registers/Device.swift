@@ -5,6 +5,18 @@ import MMIO
 /// Analog to Digital Converter
 public let adc = ADC(unsafeAddress: 0x4001_2400)
 
+/// Cyclic redundancy check calculation unit
+public let crc = CRC(unsafeAddress: 0x4002_3000)
+
+/// DBG register block
+public let dbg = DBG(unsafeAddress: 0x4001_5800)
+
+/// DMA controller
+public let dma = DMA(unsafeAddress: 0x4002_0000)
+
+/// DMAMUX register block
+public let dmamux = DMAMUX(unsafeAddress: 0x4002_0800)
+
 /// EXTI address block description
 public let exti = EXTI(unsafeAddress: 0x4002_1800)
 
@@ -14,11 +26,56 @@ public let gpioa = GPIO(unsafeAddress: 0x5000_0000)
 /// GPIOB address block description
 public let gpiob = GPIO(unsafeAddress: 0x5000_0400)
 
+/// GPIOC address block description
+public let gpioc = GPIO(unsafeAddress: 0x5000_0800)
+
+/// GPIOD address block description
+public let gpiod = GPIO(unsafeAddress: 0x5000_0c00)
+
+/// GPIOF address block description
+public let gpiof = GPIO(unsafeAddress: 0x5000_1400)
+
 /// I2C register block
 public let i2c = I2C(unsafeAddress: 0x4000_5400)
+
+/// IWDG register block
+public let iwdg = IWDG(unsafeAddress: 0x4000_3000)
+
+/// PWR address block description
+public let pwr = PWR(unsafeAddress: 0x4000_7000)
 
 /// RCC address block description
 public let rcc = RCC(unsafeAddress: 0x4002_1000)
 
+/// RTC register block
+public let rtc = RTC(unsafeAddress: 0x4000_2800)
+
+/// Serial peripheral interface
+public let `spi` = SPI(unsafeAddress: 0x4001_3000)
+
 /// SYSCFG register block
 public let syscfg = SYSCFG(unsafeAddress: 0x4001_0000)
+
+/// Advanced-control timer
+public let tim1 = TIM1(unsafeAddress: 0x4001_2c00)
+
+/// General-purpose timers
+public let tim14 = TIM14(unsafeAddress: 0x4000_2000)
+
+/// General-purpose timers
+public let tim16 = TIM16(unsafeAddress: 0x4001_4400)
+
+/// General-purpose timers
+public let tim17 = TIM17(unsafeAddress: 0x4001_4800)
+
+/// General-purpose timer
+public let tim3 = TIM3(unsafeAddress: 0x4000_0400)
+
+/// USART register block
+public let usart1 = USART1(unsafeAddress: 0x4001_3800)
+
+/// USART register block
+public let usart2 = USART2(unsafeAddress: 0x4000_4400)
+
+/// WWDG register block
+public let wwdg = WWDG(unsafeAddress: 0x4000_2c00)
