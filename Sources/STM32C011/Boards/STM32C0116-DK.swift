@@ -31,6 +31,9 @@ public struct STM32C0116_DK {
             pin: LED3,
             as: .init(mode: .output, outputType: .pushPull, outputSpeed: .high, pull: .down)
         )
+
+        // Start with LED off
+        setLed(.off)
     }
 
     public enum LedState: UInt32 {
