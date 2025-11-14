@@ -8,7 +8,7 @@ INPUT_NAME := libApplication.a
 PRJROOT := .
 LIBROOT := $(PRJROOT)/.build/checkouts/swift-stm32c011
 BUILDROOT := $(PRJROOT)/.build/$(CONFIGURATION)
-TOOLSET := $(PRJROOT)/Toolsets/stm32c0xx.json
+TOOLSET := $(LIBROOT)/Toolsets/stm32c0xx.json
 
 # Target and build flags
 ARCH := armv6m
