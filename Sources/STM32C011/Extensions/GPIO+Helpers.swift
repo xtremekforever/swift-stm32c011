@@ -1,3 +1,5 @@
+import MMIO
+
 extension GPIO {
     public enum Mode: UInt32 {
         case input = 0x0

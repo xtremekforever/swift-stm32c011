@@ -1,4 +1,5 @@
 import CortexM
+import MMIO
 
 extension I2C {
     public var state: BitFlagState {

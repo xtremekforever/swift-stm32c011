@@ -1,3 +1,5 @@
+import MMIO
+
 extension UInt32 {
     func get(mask: Self, offset: UInt8) -> Self {
         let mask = mask &<< offset
