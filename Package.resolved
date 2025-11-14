@@ -1,13 +1,13 @@
 {
-  "originHash" : "172ae94b0fb0c15a5df02c9c18333fc45dceb0350680223823db80d7227f8f2b",
+  "originHash" : "bfc7670ce3b98de07a365c1442a1fc384e740100930876aa4fd7210b11f36611",
   "pins" : [
     {
       "identity" : "swift-argument-parser",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-argument-parser.git",
       "state" : {
-        "revision" : "41982a3656a71c768319979febd796c6fd111d5c",
-        "version" : "1.5.0"
+        "revision" : "cdd0ef3755280949551dc26dee5de9ddeda89f54",
+        "version" : "1.6.2"
       }
     },
     {
@@ -16,7 +16,7 @@
       "location" : "https://github.com/xtremekforever/swift-cortex-m",
       "state" : {
         "branch" : "feature/update-mmio",
-        "revision" : "4a0a306a825622f46237a700f168e844d25761a6"
+        "revision" : "b2831cc6e33f5666c34e6d044f0c9f55bdcb6614"
       }
     },
     {
