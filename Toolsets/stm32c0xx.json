@@ -14,7 +14,8 @@
     "extraCLIOptions": [
       "-Osize",
       "-Xfrontend", "-disable-stack-protector",
-      "-Xfrontend", "-function-sections"
+      "-Xfrontend", "-function-sections",
+      "-enable-experimental-feature", "Embedded"
     ]
   },
   "schemaVersion": "1.0"

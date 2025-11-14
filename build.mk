@@ -8,6 +8,7 @@ INPUT_NAME := libApplication.a
 PRJROOT := .
 LIBROOT := $(PRJROOT)/.build/checkouts/swift-stm32c011
 BUILDROOT := $(PRJROOT)/.build/$(CONFIGURATION)
+TOOLSET := $(PRJROOT)/Toolsets/stm32c0xx.json
 
 # Target and build flags
 ARCH := armv6m
@@ -24,8 +25,8 @@ build:
 	@echo "compiling (please be patient, this may take a few minutes)..."
 	swift build \
 		--configuration $(CONFIGURATION) \
-		--swift-sdks-path $(LIBROOT)/SDKs \
-		--swift-sdk stm32c0xx \
+		--triple $(TARGET) \
+		--toolset $(TOOLSET)
 		$(EXTRA_FLAGS)
 
 link:
