@@ -1,3 +1,5 @@
+import MMIO
+
 extension USART1 {
     public func configure(baud: UInt32) {
         // Set the baud rate to 12MHz

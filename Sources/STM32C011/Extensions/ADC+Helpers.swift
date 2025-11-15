@@ -1,3 +1,5 @@
+import MMIO
+
 extension ADC {
   public enum ClockMode: UInt32 {
     case adcClk = 0x0

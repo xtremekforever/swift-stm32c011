@@ -1,4 +1,4 @@
-// swift-tools-version: 6.0
+// swift-tools-version: 6.1
 
 import PackageDescription
 
@@ -8,7 +8,7 @@ let package = Package(
         .library(name: "STM32C011", targets: ["STM32C011", "Support"])
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-mmio", branch: "swift-embedded-examples"),
+        .package(url: "https://github.com/apple/swift-mmio", from: "0.1.1"),
         .package(url: "https://github.com/xtremekforever/swift-cortex-m", branch: "main"),
     ],
     targets: [
@@ -18,9 +18,6 @@ let package = Package(
                 .product(name: "MMIO", package: "swift-mmio"),
                 .product(name: "CortexM", package: "swift-cortex-m"),
                 "Support",
-            ],
-            swiftSettings: [
-                .enableExperimentalFeature("Embedded")
             ]
         ),
         .target(name: "Support"),
