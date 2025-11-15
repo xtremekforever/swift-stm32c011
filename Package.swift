@@ -9,7 +9,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-mmio", from: "0.1.1"),
-        .package(url: "https://github.com/xtremekforever/swift-cortex-m", branch: "feature/update-mmio"),
+        .package(url: "https://github.com/xtremekforever/swift-cortex-m", branch: "main"),
     ],
     targets: [
         .target(

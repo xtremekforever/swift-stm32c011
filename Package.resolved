@@ -1,5 +1,5 @@
 {
-  "originHash" : "bfc7670ce3b98de07a365c1442a1fc384e740100930876aa4fd7210b11f36611",
+  "originHash" : "167fbde230b2d053f4051fe5b35e8e82dd6b1bea00822bab7d62a93dadb17bc5",
   "pins" : [
     {
       "identity" : "swift-argument-parser",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/xtremekforever/swift-cortex-m",
       "state" : {
-        "branch" : "feature/update-mmio",
-        "revision" : "b2831cc6e33f5666c34e6d044f0c9f55bdcb6614"
+        "branch" : "main",
+        "revision" : "52790728c5055594b6481c29b5efce7d68e2a850"
       }
     },
     {
