@@ -74,18 +74,14 @@ extension PWR {
     /// PWR control register 1
     @Register(bitWidth: 32)
     public struct CR1 {
-        /// Low-power mode selection
-        /// These bits select the low-power mode entered when CPU enters deepsleep mode.
         /// 1XX: Shutdown mode
         @ReadWrite(bits: 0..<3)
         public var lpms: LPMS
 
-        /// Flash memory powered down during Stop mode
         /// This bit determines whether the Flash memory is put in power-down mode or remains in idle mode when the device enters Stop mode.
         @ReadWrite(bits: 3..<4)
         public var fpd_stop: FPD_STOP
 
-        /// Flash memory powered down during Sleep mode
         /// This bit determines whether the Flash memory is put in power-down mode or remains in idle mode when the device enters Sleep mode.
         @ReadWrite(bits: 5..<6)
         public var fpd_slp: FPD_SLP
@@ -94,37 +90,30 @@ extension PWR {
     /// PWR control register 3
     @Register(bitWidth: 32)
     public struct CR3 {
-        /// Enable WKUP1 wakeup pin
         /// When this bit is set, the WKUP1 external wakeup pin is enabled and triggers a wakeup event when a rising or a falling edge occurs. The active edge is configured via the WP1 bit of the PWR_CR4 register.
         @ReadWrite(bits: 0..<1)
         public var ewup1: EWUP1
 
-        /// Enable WKUP2 wakeup pin
         /// When this bit is set, the WKUP2 external wakeup pin is enabled and triggers a wakeup event when a rising or a falling edge occurs. The active edge is configured via the WP2 bit of the PWR_CR4 register.
         @ReadWrite(bits: 1..<2)
         public var ewup2: EWUP2
 
-        /// Enable WKUP3 wakeup pin
         /// When this bit is set, the WKUP3 external wakeup pin is enabled and triggers a wakeup event when a rising or a falling edge occurs. The active edge is configured via the WP3 bit of the PWR_CR4 register.
         @ReadWrite(bits: 2..<3)
         public var ewup3: EWUP3
 
-        /// Enable WKUP4 wakeup pin
         /// When this bit is set, the WKUP4 external wakeup pin is enabled and triggers a wakeup event when a rising or a falling edge occurs. The active edge is configured via the WP4 bit in the PWR_CR4 register.
         @ReadWrite(bits: 3..<4)
         public var ewup4: EWUP4
 
-        /// Enable WKUP6 wakeup pin
         /// When this bit is set, the WKUP6 external wakeup pin is enabled and triggers a wakeup event when a rising or a falling edge occurs. The active edge is configured through WP6 bit in the PWR_CR4 register.
         @ReadWrite(bits: 5..<6)
         public var ewup6: EWUP6
 
-        /// Apply pull-up and pull-down configuration
         /// This bit determines whether the I/O pull-up and pull-down configurations defined in the PWR_PUCRx and PWR_PDCRx registers are applied.
         @ReadWrite(bits: 10..<11)
         public var apc: APC
 
-        /// Enable internal wakeup line
         /// When set, a rising edge on the internal wakeup line triggers a wakeup event.
         @ReadWrite(bits: 15..<16)
         public var eiwul: EIWUL
@@ -133,27 +122,22 @@ extension PWR {
     /// PWR control register 4
     @Register(bitWidth: 32)
     public struct CR4 {
-        /// WKUP1 wakeup pin polarity
         /// WKUP1 external wakeup signal polarity (level or edge) to generate wakeup condition:
         @ReadWrite(bits: 0..<1)
         public var wp1: WP1
 
-        /// WKUP2 wakeup pin polarity
         /// WKUP2 external wakeup signal polarity (level or edge) to generate wakeup condition:
         @ReadWrite(bits: 1..<2)
         public var wp2: WP2
 
-        /// WKUP3 wakeup pin polarity
         /// WKUP3 external wakeup signal polarity (level or edge) to generate wakeup condition:
         @ReadWrite(bits: 2..<3)
         public var wp3: WP3
 
-        /// WKUP4 wakeup pin polarity
         /// WKUP4 external wakeup signal polarity (level or edge) to generate wakeup condition:
         @ReadWrite(bits: 3..<4)
         public var wp4: WP4
 
-        /// WKUP6 wakeup pin polarity
         /// WKUP6 external wakeup signal polarity (level or edge) to generate wakeup condition:
         @ReadWrite(bits: 5..<6)
         public var wp6: WP6
@@ -162,37 +146,30 @@ extension PWR {
     /// PWR status register 1
     @Register(bitWidth: 32)
     public struct SR1 {
-        /// Wakeup flag 1
         /// This bit is set when a wakeup condition is detected on WKUP1 wakeup pin. It is cleared by setting the CWUF1 bit of the PWR_SCR register.
         @ReadOnly(bits: 0..<1)
         public var wuf1: WUF1
 
-        /// Wakeup flag 2
         /// This bit is set when a wakeup condition is detected on WKUP2 wakeup pin. It is cleared by setting the CWUF2 bit of the PWR_SCR register.
         @ReadOnly(bits: 1..<2)
         public var wuf2: WUF2
 
-        /// Wakeup flag 3
         /// This bit is set when a wakeup condition is detected on WKUP3 wakeup pin. It is cleared by setting the CWUF3 bit of the PWR_SCR register.
         @ReadOnly(bits: 2..<3)
         public var wuf3: WUF3
 
-        /// Wakeup flag 4
         /// This bit is set when a wakeup condition is detected on WKUP4 wakeup pin. It is cleared by setting the CWUF4 bit of the PWR_SCR register.
         @ReadOnly(bits: 3..<4)
         public var wuf4: WUF4
 
-        /// Wakeup flag 6
         /// This bit is set when a wakeup condition is detected on WKUP6 wakeup pin. It is cleared by setting the CWUF6 bit of the PWR_SCR register.
         @ReadOnly(bits: 5..<6)
         public var wuf6: WUF6
 
-        /// Standby/Shutdown flag
         /// This bit is set by hardware when the device enters Standby or Shutdown mode and is cleared by setting the CSBF bit in the PWR_SCR register, or by a power-on reset. It is not cleared by the system reset.
         @ReadOnly(bits: 8..<9)
         public var sbf: SBF
 
-        /// Wakeup flag internal
         /// This bit is set when a wakeup condition is detected on the internal wakeup line. It is cleared when all internal wakeup sources are cleared.
         @ReadOnly(bits: 15..<16)
         public var wufi: WUFI
@@ -201,8 +178,6 @@ extension PWR {
     /// PWR status register 2
     @Register(bitWidth: 32)
     public struct SR2 {
-        /// Flash ready flag
-        /// This bit is set by hardware to indicate when the Flash memory is ready to be accessed after wakeup from power-down. To place the Flash memory in power-down, set either FPD_SLP or FPD_STP bit.
         /// Note: If the system boots from SRAM, the user application must wait till FLASH_RDY bit is set, prior to jumping to Flash memory.
         @ReadOnly(bits: 7..<8)
         public var flash_rdy: FLASH_RDY
@@ -211,32 +186,26 @@ extension PWR {
     /// PWR status clear register
     @Register(bitWidth: 32)
     public struct SCR {
-        /// Clear wakeup flag 1
         /// Setting this bit clears the WUF1 flag in the PWR_SR1 register.
         @WriteOnly(bits: 0..<1)
         public var cwuf1: CWUF1
 
-        /// Clear wakeup flag 2
         /// Setting this bit clears the WUF2 flag in the PWR_SR1 register.
         @WriteOnly(bits: 1..<2)
         public var cwuf2: CWUF2
 
-        /// Clear wakeup flag 3
         /// Setting this bit clears the WUF3 flag in the PWR_SR1 register.
         @WriteOnly(bits: 2..<3)
         public var cwuf3: CWUF3
 
-        /// Clear wakeup flag 4
         /// Setting this bit clears the WUF4 flag in the PWR_SR1 register.
         @WriteOnly(bits: 3..<4)
         public var cwuf4: CWUF4
 
-        /// Clear wakeup flag 6
         /// Setting this bit clears the WUF6 flag in the PWR_SR1 register.
         @WriteOnly(bits: 5..<6)
         public var cwuf6: CWUF6
 
-        /// Clear standby flag
         /// Setting this bit clears the SBF flag in the PWR_SR1 register.
         @WriteOnly(bits: 8..<9)
         public var csbf: CSBF
@@ -245,82 +214,66 @@ extension PWR {
     /// PWR Port A pull-up control register
     @Register(bitWidth: 32)
     public struct PUCRA {
-        /// Port A pull-up bit i (i = 15 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PA[i] I/O.
         @ReadWrite(bits: 0..<1)
         public var pu0: PU0
 
-        /// Port A pull-up bit i (i = 15 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PA[i] I/O.
         @ReadWrite(bits: 1..<2)
         public var pu1: PU1
 
-        /// Port A pull-up bit i (i = 15 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PA[i] I/O.
         @ReadWrite(bits: 2..<3)
         public var pu2: PU2
 
-        /// Port A pull-up bit i (i = 15 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PA[i] I/O.
         @ReadWrite(bits: 3..<4)
         public var pu3: PU3
 
-        /// Port A pull-up bit i (i = 15 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PA[i] I/O.
         @ReadWrite(bits: 4..<5)
         public var pu4: PU4
 
-        /// Port A pull-up bit i (i = 15 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PA[i] I/O.
         @ReadWrite(bits: 5..<6)
         public var pu5: PU5
 
-        /// Port A pull-up bit i (i = 15 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PA[i] I/O.
         @ReadWrite(bits: 6..<7)
         public var pu6: PU6
 
-        /// Port A pull-up bit i (i = 15 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PA[i] I/O.
         @ReadWrite(bits: 7..<8)
         public var pu7: PU7
 
-        /// Port A pull-up bit i (i = 15 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PA[i] I/O.
         @ReadWrite(bits: 8..<9)
         public var pu8: PU8
 
-        /// Port A pull-up bit i (i = 15 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PA[i] I/O.
         @ReadWrite(bits: 9..<10)
         public var pu9: PU9
 
-        /// Port A pull-up bit i (i = 15 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PA[i] I/O.
         @ReadWrite(bits: 10..<11)
         public var pu10: PU10
 
-        /// Port A pull-up bit i (i = 15 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PA[i] I/O.
         @ReadWrite(bits: 11..<12)
         public var pu11: PU11
 
-        /// Port A pull-up bit i (i = 15 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PA[i] I/O.
         @ReadWrite(bits: 12..<13)
         public var pu12: PU12
 
-        /// Port A pull-up bit i (i = 15 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PA[i] I/O.
         @ReadWrite(bits: 13..<14)
         public var pu13: PU13
 
-        /// Port A pull-up bit i (i = 15 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PA[i] I/O.
         @ReadWrite(bits: 14..<15)
         public var pu14: PU14
 
-        /// Port A pull-up bit i (i = 15 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PA[i] I/O.
         @ReadWrite(bits: 15..<16)
         public var pu15: PU15
@@ -329,82 +282,66 @@ extension PWR {
     /// PWR Port A pull-down control register
     @Register(bitWidth: 32)
     public struct PDCRA {
-        /// Port A pull-down bit i (i = 15 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PA[i] I/O.
         @ReadWrite(bits: 0..<1)
         public var pd0: PD0
 
-        /// Port A pull-down bit i (i = 15 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PA[i] I/O.
         @ReadWrite(bits: 1..<2)
         public var pd1: PD1
 
-        /// Port A pull-down bit i (i = 15 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PA[i] I/O.
         @ReadWrite(bits: 2..<3)
         public var pd2: PD2
 
-        /// Port A pull-down bit i (i = 15 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PA[i] I/O.
         @ReadWrite(bits: 3..<4)
         public var pd3: PD3
 
-        /// Port A pull-down bit i (i = 15 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PA[i] I/O.
         @ReadWrite(bits: 4..<5)
         public var pd4: PD4
 
-        /// Port A pull-down bit i (i = 15 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PA[i] I/O.
         @ReadWrite(bits: 5..<6)
         public var pd5: PD5
 
-        /// Port A pull-down bit i (i = 15 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PA[i] I/O.
         @ReadWrite(bits: 6..<7)
         public var pd6: PD6
 
-        /// Port A pull-down bit i (i = 15 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PA[i] I/O.
         @ReadWrite(bits: 7..<8)
         public var pd7: PD7
 
-        /// Port A pull-down bit i (i = 15 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PA[i] I/O.
         @ReadWrite(bits: 8..<9)
         public var pd8: PD8
 
-        /// Port A pull-down bit i (i = 15 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PA[i] I/O.
         @ReadWrite(bits: 9..<10)
         public var pd9: PD9
 
-        /// Port A pull-down bit i (i = 15 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PA[i] I/O.
         @ReadWrite(bits: 10..<11)
         public var pd10: PD10
 
-        /// Port A pull-down bit i (i = 15 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PA[i] I/O.
         @ReadWrite(bits: 11..<12)
         public var pd11: PD11
 
-        /// Port A pull-down bit i (i = 15 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PA[i] I/O.
         @ReadWrite(bits: 12..<13)
         public var pd12: PD12
 
-        /// Port A pull-down bit i (i = 15 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PA[i] I/O.
         @ReadWrite(bits: 13..<14)
         public var pd13: PD13
 
-        /// Port A pull-down bit i (i = 15 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PA[i] I/O.
         @ReadWrite(bits: 14..<15)
         public var pd14: PD14
 
-        /// Port A pull-down bit i (i = 15 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PA[i] I/O.
         @ReadWrite(bits: 15..<16)
         public var pd15: PD15
@@ -413,14 +350,10 @@ extension PWR {
     /// PWR Port B pull-up control register
     @Register(bitWidth: 32)
     public struct PUCRB {
-        /// Port B pull-up bit i (i = 15 to 0)
-        /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PB[i] I/O.
         /// On STM32C011xx, only PU7 and PU6 are available
         @ReadWrite(bits: 6..<7)
         public var pu6: PU6
 
-        /// Port B pull-up bit i (i = 15 to 0)
-        /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PB[i] I/O.
         /// On STM32C011xx, only PU7 and PU6 are available
         @ReadWrite(bits: 7..<8)
         public var pu7: PU7
@@ -429,14 +362,10 @@ extension PWR {
     /// PWR Port B pull-down control register
     @Register(bitWidth: 32)
     public struct PDCRB {
-        /// Port B pull-down bit i (i = 15 to 0)
-        /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PB[i] I/O.
         /// On STM32C011xx, only PD7 and PD6 are available
         @ReadWrite(bits: 6..<7)
         public var pd6: PD6
 
-        /// Port B pull-down bit i (i = 15 to 0)
-        /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PB[i] I/O.
         /// On STM32C011xx, only PD7 and PD6 are available
         @ReadWrite(bits: 7..<8)
         public var pd7: PD7
@@ -445,14 +374,10 @@ extension PWR {
     /// PWR Port C pull-up control register
     @Register(bitWidth: 32)
     public struct PUCRC {
-        /// Port C pull-up bit i (i = 15 to 13, 7 to 6)
-        /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PC[i] I/O.
         /// On STM32C011xx, only PU15 and PU14 are available
         @ReadWrite(bits: 14..<15)
         public var pu14: PU14
 
-        /// Port C pull-up bit i (i = 15 to 13, 7 to 6)
-        /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PC[i] I/O.
         /// On STM32C011xx, only PU15 and PU14 are available
         @ReadWrite(bits: 15..<16)
         public var pu15: PU15
@@ -461,14 +386,10 @@ extension PWR {
     /// PWR Port C pull-down control register
     @Register(bitWidth: 32)
     public struct PDCRC {
-        /// Port C pull-down bit i (i = 15, 14, 13, 7, 6)
-        /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PC[i] I/O.
         /// On STM32C011xx, only PD15 and PD14 are available.
         @ReadWrite(bits: 14..<15)
         public var pd14: PD14
 
-        /// Port C pull-down bit i (i = 15, 14, 13, 7, 6)
-        /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PC[i] I/O.
         /// On STM32C011xx, only PD15 and PD14 are available.
         @ReadWrite(bits: 15..<16)
         public var pd15: PD15
@@ -477,22 +398,18 @@ extension PWR {
     /// PWR Port D pull-up control register
     @Register(bitWidth: 32)
     public struct PUCRD {
-        /// Port D pull-up bit i (i = 3 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PD[i] I/O.
         @ReadWrite(bits: 0..<1)
         public var pu0: PU0
 
-        /// Port D pull-up bit i (i = 3 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PD[i] I/O.
         @ReadWrite(bits: 1..<2)
         public var pu1: PU1
 
-        /// Port D pull-up bit i (i = 3 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PD[i] I/O.
         @ReadWrite(bits: 2..<3)
         public var pu2: PU2
 
-        /// Port D pull-up bit i (i = 3 to 0)
         /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PD[i] I/O.
         @ReadWrite(bits: 3..<4)
         public var pu3: PU3
@@ -501,22 +418,18 @@ extension PWR {
     /// PWR Port D pull-down control register
     @Register(bitWidth: 32)
     public struct PDCRD {
-        /// Port D pull-down bit i (i = 3 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PD[i] I/O.
         @ReadWrite(bits: 0..<1)
         public var pd0: PD0
 
-        /// Port D pull-down bit i (i = 3 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PD[i] I/O.
         @ReadWrite(bits: 1..<2)
         public var pd1: PD1
 
-        /// Port D pull-down bit i (i = 3 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PD[i] I/O.
         @ReadWrite(bits: 2..<3)
         public var pd2: PD2
 
-        /// Port D pull-down bit i (i = 3 to 0)
         /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PD[i] I/O.
         @ReadWrite(bits: 3..<4)
         public var pd3: PD3
@@ -525,8 +438,6 @@ extension PWR {
     /// PWR Port F pull-up control register
     @Register(bitWidth: 32)
     public struct PUCRF {
-        /// Port F pull-up bit i (i = 2 to 0)
-        /// Setting PUi bit while the corresponding PDi bit is zero and the APC bit of the PWR_CR3 register is set activates a pull-up device on the PF[i] I/O.
         /// On STM32C011xx, only PU2 is available.
         @ReadWrite(bits: 2..<3)
         public var pu2: PU2
@@ -535,8 +446,6 @@ extension PWR {
     /// PWR Port F pull-down control register
     @Register(bitWidth: 32)
     public struct PDCRF {
-        /// Port F pull-down bit i (i = 2 to 0)
-        /// Setting PDi bit while the APC bit of the PWR_CR3 register is set activates a pull-down device on the PF[i] I/O.
         /// On STM32C011xx, only PD2 is available.
         @ReadWrite(bits: 2..<3)
         public var pd2: PD2

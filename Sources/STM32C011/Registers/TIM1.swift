@@ -122,24 +122,14 @@ extension TIM1 {
     /// TIM1 control register 1
     @Register(bitWidth: 16)
     public struct CR1 {
-        /// Counter enable
         /// Note: External clock, gated mode and encoder mode can work only if the CEN bit has been previously set by software. However trigger mode can set the CEN bit automatically by hardware.
         @ReadWrite(bits: 0..<1)
         public var cen: CEN
 
-        /// Update disable
-        /// This bit is set and cleared by software to enable/disable UEV event generation.
-        /// Counter overflow/underflow
-        /// Setting the UG bit
-        /// Update generation through the slave mode controller
         /// Buffered registers are then loaded with their preload values.
         @ReadWrite(bits: 1..<2)
         public var udis: UDIS
 
-        /// Update request source
-        /// This bit is set and cleared by software to select the UEV event sources.
-        /// Counter overflow/underflow
-        /// Setting the UG bit
         /// Update generation through the slave mode controller
         @ReadWrite(bits: 2..<3)
         public var urs: URS
@@ -148,12 +138,10 @@ extension TIM1 {
         @ReadWrite(bits: 3..<4)
         public var opm: OPM
 
-        /// Direction
         /// Note: This bit is read only when the timer is configured in Center-aligned mode or Encoder mode.
         @ReadWrite(bits: 4..<5)
         public var dir: DIR
 
-        /// Center-aligned mode selection
         /// Note: Switch from edge-aligned mode to center-aligned mode as long as the counter is enabled (CEN=1) is not allowed
         @ReadWrite(bits: 5..<7)
         public var cms: CMS
@@ -162,8 +150,6 @@ extension TIM1 {
         @ReadWrite(bits: 7..<8)
         public var arpe: ARPE
 
-        /// Clock division
-        /// This bit-field indicates the division ratio between the timer clock (CK_INT) frequency and the dead-time and sampling clock (tDTS)used by the dead-time generators and the digital filters (ETR, TIx):
         /// Note: tDTS = 1/fDTS, tCK_INT = 1/fCK_INT.
         @ReadWrite(bits: 8..<10)
         public var ckd: CKD
@@ -176,12 +162,10 @@ extension TIM1 {
     /// TIM1 control register 2
     @Register(bitWidth: 32)
     public struct CR2 {
-        /// Capture/compare preloaded control
         /// Note: This bit acts only on channels that have a complementary output.
         @ReadWrite(bits: 0..<1)
         public var ccpc: CCPC
 
-        /// Capture/compare control update selection
         /// Note: This bit acts only on channels that have a complementary output.
         @ReadWrite(bits: 2..<3)
         public var ccus: CCUS
@@ -190,8 +174,6 @@ extension TIM1 {
         @ReadWrite(bits: 3..<4)
         public var ccds: CCDS
 
-        /// Master mode selection
-        /// These bits allow selected information to be sent in master mode to slave timers for synchronization (TRGO). The combination is as follows:
         /// Note: The clock of the slave timer or ADC must be enabled prior to receive events from the master timer, and must not be changed on-the-fly while triggers are received from the master timer.
         @ReadWrite(bits: 4..<7)
         public var mms: MMS
@@ -200,53 +182,42 @@ extension TIM1 {
         @ReadWrite(bits: 7..<8)
         public var ti1s: TI1S
 
-        /// Output Idle state 1 (OC1 output)
         /// Note: This bit can not be modified as long as LOCK level 1, 2 or 3 has been programmed (LOCK bits in TIMx_BDTR register).
         @ReadWrite(bits: 8..<9)
         public var ois1: OIS1
 
-        /// Output Idle state 1 (OC1N output)
         /// Note: This bit can not be modified as long as LOCK level 1, 2 or 3 has been programmed (LOCK bits in TIMx_BDTR register).
         @ReadWrite(bits: 9..<10)
         public var ois1n: OIS1N
 
-        /// Output Idle state 2 (OC2 output)
         /// Refer to OIS1 bit
         @ReadWrite(bits: 10..<11)
         public var ois2: OIS2
 
-        /// Output Idle state 2 (OC2N output)
         /// Refer to OIS1N bit
         @ReadWrite(bits: 11..<12)
         public var ois2n: OIS2N
 
-        /// Output Idle state 3 (OC3 output)
         /// Refer to OIS1 bit
         @ReadWrite(bits: 12..<13)
         public var ois3: OIS3
 
-        /// Output Idle state 3 (OC3N output)
         /// Refer to OIS1N bit
         @ReadWrite(bits: 13..<14)
         public var ois3n: OIS3N
 
-        /// Output Idle state 4 (OC4 output)
         /// Refer to OIS1 bit
         @ReadWrite(bits: 14..<15)
         public var ois4: OIS4
 
-        /// Output Idle state 5 (OC5 output)
         /// Refer to OIS1 bit
         @ReadWrite(bits: 16..<17)
         public var ois5: OIS5
 
-        /// Output Idle state 6 (OC6 output)
         /// Refer to OIS1 bit
         @ReadWrite(bits: 18..<19)
         public var ois6: OIS6
 
-        /// Master mode selection 2
-        /// These bits allow the information to be sent to ADC for synchronization (TRGO2) to be selected. The combination is as follows:
         /// Note: The clock of the slave timer or ADC must be enabled prior to receive events from the master timer, and must not be changed on-the-fly while triggers are received from the master timer.
         @ReadWrite(bits: 20..<24)
         public var mms2: MMS2
@@ -255,22 +226,14 @@ extension TIM1 {
     /// TIM1 slave mode control register
     @Register(bitWidth: 32)
     public struct SMCR {
-        /// Slave mode selection
-        /// When external signals are selected the active edge of the trigger signal (TRGI) is linked to the polarity selected on the external input (see Input Control register and Control Register description.
-        /// Note: The gated mode must not be used if TI1F_ED is selected as the trigger input (TS=00100). Indeed, TI1F_ED outputs 1 pulse for each transition on TI1F, whereas the gated mode checks the level of the trigger signal.
         /// Note: The clock of the slave peripherals (timer, ADC, ...) receiving the TRGO or the TRGO2 signals must be enabled prior to receive events from the master timer, and the clock frequency (prescaler) must not be changed on-the-fly while triggers are received from the master timer.
         @ReadWrite(bits: 0..<3)
         public var sms1: SMS1
 
-        /// OCREF clear selection
         /// This bit is used to select the OCREF clear source.
         @ReadWrite(bits: 3..<4)
         public var occs: OCCS
 
-        /// Trigger selection
-        /// This bit-field selects the trigger input to be used to synchronize the counter.
-        /// Others: Reserved
-        /// See for more details on ITRx meaning for each Timer.
         /// Note: These bits must be changed only when they are not used (e.g. when SMS=000) to avoid wrong edge detections at the transition.
         @ReadWrite(bits: 4..<7)
         public var ts1: TS1
@@ -279,40 +242,26 @@ extension TIM1 {
         @ReadWrite(bits: 7..<8)
         public var msm: MSM
 
-        /// External trigger filter
         /// This bit-field then defines the frequency used to sample ETRP signal and the length of the digital filter applied to ETRP. The digital filter is made of an event counter in which N consecutive events are needed to validate a transition on the output:
         @ReadWrite(bits: 8..<12)
         public var etf: ETF
 
-        /// External trigger prescaler
         /// External trigger signal ETRP frequency must be at most 1/4 of fCK_INT frequency. A prescaler can be enabled to reduce ETRP frequency. It is useful when inputting fast external clocks.
         @ReadWrite(bits: 12..<14)
         public var etps: ETPS
 
-        /// External clock enable
-        /// This bit enables External clock mode 2.
-        /// Note: Setting the ECE bit has the same effect as selecting external clock mode 1 with TRGI connected to ETRF (SMS=111 and TS=00111).
-        /// It is possible to simultaneously use external clock mode 2 with the following slave modes: reset mode, gated mode and trigger mode. Nevertheless, TRGI must not be connected to ETRF in this case (TS bits must not be 00111).
         /// If external clock mode 1 and external clock mode 2 are enabled at the same time, the external clock input is ETRF.
         @ReadWrite(bits: 14..<15)
         public var ece: ECE
 
-        /// External trigger polarity
         /// This bit selects whether ETR or ETR is used for trigger operations
         @ReadWrite(bits: 15..<16)
         public var etp: ETP
 
-        /// Slave mode selection
-        /// When external signals are selected the active edge of the trigger signal (TRGI) is linked to the polarity selected on the external input (see Input Control register and Control Register description.
-        /// Note: The gated mode must not be used if TI1F_ED is selected as the trigger input (TS=00100). Indeed, TI1F_ED outputs 1 pulse for each transition on TI1F, whereas the gated mode checks the level of the trigger signal.
         /// Note: The clock of the slave peripherals (timer, ADC, ...) receiving the TRGO or the TRGO2 signals must be enabled prior to receive events from the master timer, and the clock frequency (prescaler) must not be changed on-the-fly while triggers are received from the master timer.
         @ReadWrite(bits: 16..<17)
         public var sms2: SMS2
 
-        /// Trigger selection
-        /// This bit-field selects the trigger input to be used to synchronize the counter.
-        /// Others: Reserved
-        /// See for more details on ITRx meaning for each Timer.
         /// Note: These bits must be changed only when they are not used (e.g. when SMS=000) to avoid wrong edge detections at the transition.
         @ReadWrite(bits: 20..<22)
         public var ts2: TS2
@@ -385,88 +334,66 @@ extension TIM1 {
     /// TIM1 status register
     @Register(bitWidth: 32)
     public struct SR {
-        /// Update interrupt flag
-        /// This bit is set by hardware on an update event. It is cleared by software.
-        /// At overflow or underflow regarding the repetition counter value (update if repetition counter = 0) and if the UDIS=0 in the TIMx_CR1 register.
-        /// When CNT is reinitialized by software using the UG bit in TIMx_EGR register, if URS=0 and UDIS=0 in the TIMx_CR1 register.
         /// When CNT is reinitialized by a trigger event (refer to control register (TIM1_SMCRTIMx_SMCR)N/A), if URS=0 and UDIS=0 in the TIMx_CR1 register.
         @ReadWrite(bits: 0..<1)
         public var uif: UIF
 
-        /// Capture/Compare 1 interrupt flag
-        /// This flag is set by hardware. It is cleared by software (input capture or output compare mode) or by reading the TIMx_CCR1 register (input capture mode only).
-        /// If channel CC1 is configured as output: this flag is set when he content of the counter TIMx_CNT matches the content of the TIMx_CCR1 register. When the content of TIMx_CCR1 is greater than the content of TIMx_ARR, the CC1IF bit goes high on the counter overflow (in up-counting and up/down-counting modes) or underflow (in down-counting mode). There are 3 possible options for flag setting in center-aligned mode, refer to the CMS bits in the TIMx_CR1 register for the full description.
         /// If channel CC1 is configured as input: this bit is set when counter value has been captured in TIMx_CCR1 register (an edge has been detected on IC1, as per the edge sensitivity defined with the CC1P and CC1NP bits setting, in TIMx_CCER).
         @ReadWrite(bits: 1..<2)
         public var cc1if: CC1IF
 
-        /// Capture/Compare 2 interrupt flag
         /// Refer to CC1IF description
         @ReadWrite(bits: 2..<3)
         public var cc2if: CC2IF
 
-        /// Capture/Compare 3 interrupt flag
         /// Refer to CC1IF description
         @ReadWrite(bits: 3..<4)
         public var cc3if: CC3IF
 
-        /// Capture/Compare 4 interrupt flag
         /// Refer to CC1IF description
         @ReadWrite(bits: 4..<5)
         public var cc4if: CC4IF
 
-        /// COM interrupt flag
         /// This flag is set by hardware on COM event (when Capture/compare Control bits - CCxE, CCxNE, OCxM - have been updated). It is cleared by software.
         @ReadWrite(bits: 5..<6)
         public var comif: COMIF
 
-        /// Trigger interrupt flag
         /// This flag is set by hardware on the TRG trigger event (active edge detected on TRGI input when the slave mode controller is enabled in all modes but gated mode. It is set when the counter starts or stops when gated mode is selected. It is cleared by software.
         @ReadWrite(bits: 6..<7)
         public var tif: TIF
 
-        /// Break interrupt flag
         /// This flag is set by hardware as soon as the break input goes active. It can be cleared by software if the break input is not active.
         @ReadWrite(bits: 7..<8)
         public var bif: BIF
 
-        /// Break 2 interrupt flag
         /// This flag is set by hardware as soon as the break 2 input goes active. It can be cleared by software if the break 2 input is not active.
         @ReadWrite(bits: 8..<9)
         public var b2if: B2IF
 
-        /// Capture/Compare 1 overcapture flag
         /// This flag is set by hardware only when the corresponding channel is configured in input capture mode. It is cleared by software by writing it to ‘0’.
         @ReadWrite(bits: 9..<10)
         public var cc1of: CC1OF
 
-        /// Capture/Compare 2 overcapture flag
         /// Refer to CC1OF description
         @ReadWrite(bits: 10..<11)
         public var cc2of: CC2OF
 
-        /// Capture/Compare 3 overcapture flag
         /// Refer to CC1OF description
         @ReadWrite(bits: 11..<12)
         public var cc3of: CC3OF
 
-        /// Capture/Compare 4 overcapture flag
         /// Refer to CC1OF description
         @ReadWrite(bits: 12..<13)
         public var cc4of: CC4OF
 
-        /// System Break interrupt flag
-        /// This flag is set by hardware as soon as the system break input goes active. It can be cleared by software if the system break input is not active.
         /// This flag must be reset to re-start PWM operation.
         @ReadWrite(bits: 13..<14)
         public var sbif: SBIF
 
-        /// Compare 5 interrupt flag
         /// Refer to CC1IF description (Note: Channel 5 can only be configured as output)
         @ReadWrite(bits: 16..<17)
         public var cc5if: CC5IF
 
-        /// Compare 6 interrupt flag
         /// Refer to CC1IF description (Note: Channel 6 can only be configured as output)
         @ReadWrite(bits: 17..<18)
         public var cc6if: CC6IF
@@ -475,52 +402,38 @@ extension TIM1 {
     /// TIM1 event generation register
     @Register(bitWidth: 16)
     public struct EGR {
-        /// Update generation
         /// This bit can be set by software, it is automatically cleared by hardware.
         @WriteOnly(bits: 0..<1)
         public var ug: UG
 
-        /// Capture/Compare 1 generation
-        /// This bit is set by software in order to generate an event, it is automatically cleared by hardware.
-        /// If channel CC1 is configured as output:
-        /// CC1IF flag is set, Corresponding interrupt or DMA request is sent if enabled.
-        /// If channel CC1 is configured as input:
         /// The current value of the counter is captured in TIMx_CCR1 register. The CC1IF flag is set, the corresponding interrupt or DMA request is sent if enabled. The CC1OF flag is set if the CC1IF flag was already high.
         @WriteOnly(bits: 1..<2)
         public var cc1g: CC1G
 
-        /// Capture/Compare 2 generation
         /// Refer to CC1G description
         @WriteOnly(bits: 2..<3)
         public var cc2g: CC2G
 
-        /// Capture/Compare 3 generation
         /// Refer to CC1G description
         @WriteOnly(bits: 3..<4)
         public var cc3g: CC3G
 
-        /// Capture/Compare 4 generation
         /// Refer to CC1G description
         @WriteOnly(bits: 4..<5)
         public var cc4g: CC4G
 
-        /// Capture/Compare control update generation
-        /// This bit can be set by software, it is automatically cleared by hardware
         /// Note: This bit acts only on channels having a complementary output.
         @WriteOnly(bits: 5..<6)
         public var comg: COMG
 
-        /// Trigger generation
         /// This bit is set by software in order to generate an event, it is automatically cleared by hardware.
         @WriteOnly(bits: 6..<7)
         public var tg: TG
 
-        /// Break generation
         /// This bit is set by software in order to generate an event, it is automatically cleared by hardware.
         @WriteOnly(bits: 7..<8)
         public var bg: BG
 
-        /// Break 2 generation
         /// This bit is set by software in order to generate an event, it is automatically cleared by hardware.
         @WriteOnly(bits: 8..<9)
         public var b2g: B2G
@@ -529,34 +442,26 @@ extension TIM1 {
     /// TIM1 capture/compare mode register 1 [alternate]
     @Register(bitWidth: 32)
     public struct CCMR1_input {
-        /// Capture/Compare 1 Selection
-        /// This bit-field defines the direction of the channel (input/output) as well as the used input.
         /// Note: CC1S bits are writable only when the channel is OFF (CC1E = ‘0’ in TIMx_CCER).
         @ReadWrite(bits: 0..<2)
         public var cc1s: CC1S
 
-        /// Input capture 1 prescaler
         /// This bit-field defines the ratio of the prescaler acting on CC1 input (IC1). The prescaler is reset as soon as CC1E=’0’ (TIMx_CCER register).
         @ReadWrite(bits: 2..<4)
         public var ic1psc: IC1PSC
 
-        /// Input capture 1 filter
         /// This bit-field defines the frequency used to sample TI1 input and the length of the digital filter applied to TI1. The digital filter is made of an event counter in which N consecutive events are needed to validate a transition on the output:
         @ReadWrite(bits: 4..<8)
         public var ic1f: IC1F
 
-        /// Capture/Compare 2 selection
-        /// This bit-field defines the direction of the channel (input/output) as well as the used input.
         /// Note: CC2S bits are writable only when the channel is OFF (CC2E = ‘0’ in TIMx_CCER).
         @ReadWrite(bits: 8..<10)
         public var cc2s: CC2S
 
-        /// Input capture 2 prescaler
         /// Refer to IC1PSC[1:0] description.
         @ReadWrite(bits: 10..<12)
         public var ic2psc: IC2PSC
 
-        /// Input capture 2 filter
         /// Refer to IC1F[3:0] description.
         @ReadWrite(bits: 12..<16)
         public var ic2f: IC2F
@@ -565,28 +470,18 @@ extension TIM1 {
     /// TIM1 capture/compare mode register 1 [alternate]
     @Register(bitWidth: 32)
     public struct CCMR1_output {
-        /// Capture/Compare 1 selection
-        /// This bit-field defines the direction of the channel (input/output) as well as the used input.
         /// Note: CC1S bits are writable only when the channel is OFF (CC1E = ‘0’ in TIMx_CCER).
         @ReadWrite(bits: 0..<2)
         public var cc1s: CC1S
 
-        /// Output Compare 1 fast enable
         /// This bit decreases the latency between a trigger event and a transition on the timer output. It must be used in one-pulse mode (OPM bit set in TIMx_CR1 register), to have the output pulse starting as soon as possible after the starting trigger.
         @ReadWrite(bits: 2..<3)
         public var oc1fe: OC1FE
 
-        /// Output Compare 1 preload enable
-        /// Note: These bits can not be modified as long as LOCK level 3 has been programmed (LOCK bits in TIMx_BDTR register) and CC1S=’00’ (the channel is configured in output).
         /// The PWM mode can be used without validating the preload register only in one pulse mode (OPM bit set in TIMx_CR1 register). Else the behavior is not guaranteed.
         @ReadWrite(bits: 3..<4)
         public var oc1pe: OC1PE
 
-        /// Output Compare 1 mode
-        /// These bits define the behavior of the output reference signal OC1REF from which OC1 and OC1N are derived. OC1REF is active high whereas OC1 and OC1N active level depends on CC1P and CC1NP bits.
-        /// Note: These bits can not be modified as long as LOCK level 3 has been programmed (LOCK bits in TIMx_BDTR register) and CC1S=’00’ (the channel is configured in output).
-        /// Note: In PWM mode, the OCREF level changes only when the result of the comparison changes or when the output compare mode switches from “frozen” mode to “PWM” mode.
-        /// Note: On channels having a complementary output, this bit field is preloaded. If the CCPC bit is set in the TIMx_CR2 register then the OC1M active bits take the new value from the preloaded bits only when a COM event is generated.
         /// Note: The OC1M[3] bit is not contiguous, located in bit 16.
         @ReadWrite(bits: 4..<7)
         public var oc1m1: OC1M1
@@ -595,42 +490,30 @@ extension TIM1 {
         @ReadWrite(bits: 7..<8)
         public var oc1ce: OC1CE
 
-        /// Capture/Compare 2 selection
-        /// This bit-field defines the direction of the channel (input/output) as well as the used input.
         /// Note: CC2S bits are writable only when the channel is OFF (CC2E = ‘0’ in TIMx_CCER).
         @ReadWrite(bits: 8..<10)
         public var cc2s: CC2S
 
-        /// Output Compare 2 fast enable
         /// Refer to OC1FE description.
         @ReadWrite(bits: 10..<11)
         public var oc2fe: OC2FE
 
-        /// Output Compare 2 preload enable
         /// Refer to OC1PE description.
         @ReadWrite(bits: 11..<12)
         public var oc2pe: OC2PE
 
-        /// Output Compare 2 mode
         /// Refer to OC1M[3:0] description.
         @ReadWrite(bits: 12..<15)
         public var oc2m1: OC2M1
 
-        /// Output Compare 2 clear enable
         /// Refer to OC1CE description.
         @ReadWrite(bits: 15..<16)
         public var oc2ce: OC2CE
 
-        /// Output Compare 1 mode
-        /// These bits define the behavior of the output reference signal OC1REF from which OC1 and OC1N are derived. OC1REF is active high whereas OC1 and OC1N active level depends on CC1P and CC1NP bits.
-        /// Note: These bits can not be modified as long as LOCK level 3 has been programmed (LOCK bits in TIMx_BDTR register) and CC1S=’00’ (the channel is configured in output).
-        /// Note: In PWM mode, the OCREF level changes only when the result of the comparison changes or when the output compare mode switches from “frozen” mode to “PWM” mode.
-        /// Note: On channels having a complementary output, this bit field is preloaded. If the CCPC bit is set in the TIMx_CR2 register then the OC1M active bits take the new value from the preloaded bits only when a COM event is generated.
         /// Note: The OC1M[3] bit is not contiguous, located in bit 16.
         @ReadWrite(bits: 16..<17)
         public var oc1m2: OC1M2
 
-        /// Output Compare 2 mode
         /// Refer to OC1M[3:0] description.
         @ReadWrite(bits: 24..<25)
         public var oc2m2: OC2M2
@@ -639,34 +522,26 @@ extension TIM1 {
     /// TIM1 capture/compare mode register 2 [alternate]
     @Register(bitWidth: 32)
     public struct CCMR2_input {
-        /// Capture/compare 3 selection
-        /// This bit-field defines the direction of the channel (input/output) as well as the used input.
         /// Note: CC3S bits are writable only when the channel is OFF (CC3E = ‘0’ in TIMx_CCER).
         @ReadWrite(bits: 0..<2)
         public var cc3s: CC3S
 
-        /// Input capture 3 prescaler
         /// Refer to IC1PSC[1:0] description.
         @ReadWrite(bits: 2..<4)
         public var ic3psc: IC3PSC
 
-        /// Input capture 3 filter
         /// Refer to IC1F[3:0] description.
         @ReadWrite(bits: 4..<8)
         public var ic3f: IC3F
 
-        /// Capture/Compare 4 selection
-        /// This bit-field defines the direction of the channel (input/output) as well as the used input.
         /// Note: CC4S bits are writable only when the channel is OFF (CC4E = ‘0’ in TIMx_CCER).
         @ReadWrite(bits: 8..<10)
         public var cc4s: CC4S
 
-        /// Input capture 4 prescaler
         /// Refer to IC1PSC[1:0] description.
         @ReadWrite(bits: 10..<12)
         public var ic4psc: IC4PSC
 
-        /// Input capture 4 filter
         /// Refer to IC1F[3:0] description.
         @ReadWrite(bits: 12..<16)
         public var ic4f: IC4F
@@ -675,64 +550,50 @@ extension TIM1 {
     /// TIM1 capture/compare mode register 2 [alternate]
     @Register(bitWidth: 32)
     public struct CCMR2_output {
-        /// Capture/Compare 3 selection
-        /// This bit-field defines the direction of the channel (input/output) as well as the used input.
         /// Note: CC3S bits are writable only when the channel is OFF (CC3E = ‘0’ in TIMx_CCER).
         @ReadWrite(bits: 0..<2)
         public var cc3s: CC3S
 
-        /// Output compare 3 fast enable
         /// Refer to OC1FE description.
         @ReadWrite(bits: 2..<3)
         public var oc3fe: OC3FE
 
-        /// Output compare 3 preload enable
         /// Refer to OC1PE description.
         @ReadWrite(bits: 3..<4)
         public var oc3pe: OC3PE
 
-        /// Output compare 3 mode
         /// Refer to OC1M[3:0] description.
         @ReadWrite(bits: 4..<7)
         public var oc3m1: OC3M1
 
-        /// Output compare 3 clear enable
         /// Refer to OC1CE description.
         @ReadWrite(bits: 7..<8)
         public var oc3ce: OC3CE
 
-        /// Capture/Compare 4 selection
-        /// This bit-field defines the direction of the channel (input/output) as well as the used input.
         /// Note: CC4S bits are writable only when the channel is OFF (CC4E = ‘0’ in TIMx_CCER).
         @ReadWrite(bits: 8..<10)
         public var cc4s: CC4S
 
-        /// Output compare 4 fast enable
         /// Refer to OC1FE description.
         @ReadWrite(bits: 10..<11)
         public var oc4fe: OC4FE
 
-        /// Output compare 4 preload enable
         /// Refer to OC1PE description.
         @ReadWrite(bits: 11..<12)
         public var oc4pe: OC4PE
 
-        /// Output compare 4 mode
         /// Refer to OC3M[3:0] description.
         @ReadWrite(bits: 12..<15)
         public var oc4m1: OC4M1
 
-        /// Output compare 4 clear enable
         /// Refer to OC1CE description.
         @ReadWrite(bits: 15..<16)
         public var oc4ce: OC4CE
 
-        /// Output compare 3 mode
         /// Refer to OC1M[3:0] description.
         @ReadWrite(bits: 16..<17)
         public var oc3m2: OC3M2
 
-        /// Output compare 4 mode
         /// Refer to OC3M[3:0] description.
         @ReadWrite(bits: 24..<25)
         public var oc4m2: OC4M2
@@ -741,108 +602,78 @@ extension TIM1 {
     /// TIM1 capture/compare enable register
     @Register(bitWidth: 32)
     public struct CCER {
-        /// Capture/Compare 1 output enable
-        /// When CC1 channel is configured as output, the OC1 level depends on MOE, OSSI, OSSR, OIS1, OIS1N and CC1NE bits, regardless of the CC1E bits state. Refer to for details.
         /// Note: On channels having a complementary output, this bit is preloaded. If the CCPC bit is set in the TIMx_CR2 register then the CC1E active bit takes the new value from the preloaded bit only when a Commutation event is generated.
         @ReadWrite(bits: 0..<1)
         public var cc1e: CC1E
 
-        /// Capture/Compare 1 output polarity
-        /// When CC1 channel is configured as input, both CC1NP/CC1P bits select the active polarity of TI1FP1 and TI2FP1 for trigger or capture operations.
-        /// CC1NP=0, CC1P=0:	non-inverted/rising edge. The circuit is sensitive to TIxFP1 rising edge (capture or trigger operations in reset, external clock or trigger mode), TIxFP1 is not inverted (trigger operation in gated mode or encoder mode).
-        /// CC1NP=0, CC1P=1:	inverted/falling edge. The circuit is sensitive to TIxFP1 falling edge (capture or trigger operations in reset, external clock or trigger mode), TIxFP1 is inverted (trigger operation in gated mode or encoder mode).
-        /// CC1NP=1, CC1P=1:	non-inverted/both edges/ The circuit is sensitive to both TIxFP1 rising and falling edges (capture or trigger operations in reset, external clock or trigger mode), TIxFP1is not inverted (trigger operation in gated mode). This configuration must not be used in encoder mode.
-        /// CC1NP=1, CC1P=0:	The configuration is reserved, it must not be used.
-        /// Note: This bit is not writable as soon as LOCK level 2 or 3 has been programmed (LOCK bits in TIMx_BDTR register).
         /// On channels having a complementary output, this bit is preloaded. If the CCPC bit is set in the TIMx_CR2 register then the CC1P active bit takes the new value from the preloaded bit only when a Commutation event is generated.
         @ReadWrite(bits: 1..<2)
         public var cc1p: CC1P
 
-        /// Capture/Compare 1 complementary output enable
         /// On channels having a complementary output, this bit is preloaded. If the CCPC bit is set in the TIMx_CR2 register then the CC1NE active bit takes the new value from the preloaded bit only when a Commutation event is generated.
         @ReadWrite(bits: 2..<3)
         public var cc1ne: CC1NE
 
-        /// Capture/Compare 1 complementary output polarity
-        /// CC1 channel configured as output:
-        /// CC1 channel configured as input:
-        /// This bit is used in conjunction with CC1P to define the polarity of TI1FP1 and TI2FP1. Refer to CC1P description.
-        /// Note: This bit is not writable as soon as LOCK level 2 or 3 has been programmed (LOCK bits in TIMx_BDTR register) and CC1S=”00” (channel configured as output).
         /// On channels having a complementary output, this bit is preloaded. If the CCPC bit is set in the TIMx_CR2 register then the CC1NP active bit takes the new value from the preloaded bit only when a Commutation event is generated.
         @ReadWrite(bits: 3..<4)
         public var cc1np: CC1NP
 
-        /// Capture/Compare 2 output enable
         /// Refer to CC1E description
         @ReadWrite(bits: 4..<5)
         public var cc2e: CC2E
 
-        /// Capture/Compare 2 output polarity
         /// Refer to CC1P description
         @ReadWrite(bits: 5..<6)
         public var cc2p: CC2P
 
-        /// Capture/Compare 2 complementary output enable
         /// Refer to CC1NE description
         @ReadWrite(bits: 6..<7)
         public var cc2ne: CC2NE
 
-        /// Capture/Compare 2 complementary output polarity
         /// Refer to CC1NP description
         @ReadWrite(bits: 7..<8)
         public var cc2np: CC2NP
 
-        /// Capture/Compare 3 output enable
         /// Refer to CC1E description
         @ReadWrite(bits: 8..<9)
         public var cc3e: CC3E
 
-        /// Capture/Compare 3 output polarity
         /// Refer to CC1P description
         @ReadWrite(bits: 9..<10)
         public var cc3p: CC3P
 
-        /// Capture/Compare 3 complementary output enable
         /// Refer to CC1NE description
         @ReadWrite(bits: 10..<11)
         public var cc3ne: CC3NE
 
-        /// Capture/Compare 3 complementary output polarity
         /// Refer to CC1NP description
         @ReadWrite(bits: 11..<12)
         public var cc3np: CC3NP
 
-        /// Capture/Compare 4 output enable
         /// Refer to CC1E description
         @ReadWrite(bits: 12..<13)
         public var cc4e: CC4E
 
-        /// Capture/Compare 4 output polarity
         /// Refer to CC1P description
         @ReadWrite(bits: 13..<14)
         public var cc4p: CC4P
 
-        /// Capture/Compare 4 complementary output polarity
         /// Refer to CC1NP description
         @ReadWrite(bits: 15..<16)
         public var cc4np: CC4NP
 
-        /// Capture/Compare 5 output enable
         /// Refer to CC1E description
         @ReadWrite(bits: 16..<17)
         public var cc5e: CC5E
 
-        /// Capture/Compare 5 output polarity
         /// Refer to CC1P description
         @ReadWrite(bits: 17..<18)
         public var cc5p: CC5P
 
-        /// Capture/Compare 6 output enable
         /// Refer to CC1E description
         @ReadWrite(bits: 20..<21)
         public var cc6e: CC6E
 
-        /// Capture/Compare 6 output polarity
         /// Refer to CC1P description
         @ReadWrite(bits: 21..<22)
         public var cc6p: CC6P
@@ -855,7 +686,6 @@ extension TIM1 {
         @ReadWrite(bits: 0..<16)
         public var cnt_field: CNT_FIELD
 
-        /// UIF copy
         /// This bit is a read-only copy of the UIF bit of the TIMx_ISR register. If the UIFREMAP bit in the TIMxCR1 is reset, bit 31 is reserved and read at 0.
         @ReadOnly(bits: 31..<32)
         public var uifcpy: UIFCPY
@@ -864,8 +694,6 @@ extension TIM1 {
     /// TIM1 prescaler
     @Register(bitWidth: 16)
     public struct PSC {
-        /// Prescaler value
-        /// The counter clock frequency (CK_CNT) is equal to fCK_PSC / (PSC[15:0] + 1).
         /// PSC contains the value to be loaded in the active prescaler register at each update event (including when the counter is cleared through UG bit of TIMx_EGR register or through trigger controller when configured in “reset mode”).
         @ReadWrite(bits: 0..<16)
         public var psc_field: PSC_FIELD
@@ -874,9 +702,6 @@ extension TIM1 {
     /// TIM1 auto-reload register
     @Register(bitWidth: 16)
     public struct ARR {
-        /// Auto-reload value
-        /// ARR is the value to be loaded in the actual auto-reload register.
-        /// Refer to the for more details about ARR update and behavior.
         /// The counter is blocked while the auto-reload value is null.
         @ReadWrite(bits: 0..<16)
         public var arr_field: ARR_FIELD
@@ -885,11 +710,6 @@ extension TIM1 {
     /// TIM1 repetition counter register
     @Register(bitWidth: 16)
     public struct RCR {
-        /// Repetition counter value
-        /// These bits allow the user to set-up the update rate of the compare registers (i.e. periodic transfers from preload to active registers) when preload registers are enable, as well as the update interrupt generation rate, if this interrupt is enable.
-        /// Each time the REP_CNT related downcounter reaches zero, an update event is generated and it restarts counting from REP value. As REP_CNT is reloaded with REP value only at the repetition update event U_RC, any write to the TIMx_RCR register is not taken in account until the next repetition update event.
-        /// It means in PWM mode (REP+1) corresponds to:
-        /// the number of PWM periods in edge-aligned mode
         /// the number of half PWM period in center-aligned mode.
         @ReadWrite(bits: 0..<16)
         public var rep: REP
@@ -898,10 +718,6 @@ extension TIM1 {
     /// TIM1 capture/compare register 1
     @Register(bitWidth: 16)
     public struct CCR1 {
-        /// Capture/Compare 1 value
-        /// If channel CC1 is configured as output: CCR1 is the value to be loaded in the actual capture/compare 1 register (preload value).
-        /// It is loaded permanently if the preload feature is not selected in the TIMx_CCMR1 register (bit OC1PE). Else the preload value is copied in the active capture/compare 1 register when an update event occurs.
-        /// The active capture/compare register contains the value to be compared to the counter TIMx_CNT and signaled on OC1 output.
         /// If channel CC1 is configured as input: CR1 is the counter value transferred by the last input capture 1 event (IC1). The TIMx_CCR1 register is read-only and cannot be programmed.
         @ReadWrite(bits: 0..<16)
         public var ccr1_field: CCR1_FIELD
@@ -910,10 +726,6 @@ extension TIM1 {
     /// TIM1 capture/compare register 2
     @Register(bitWidth: 16)
     public struct CCR2 {
-        /// Capture/Compare 2 value
-        /// If channel CC2 is configured as output: CCR2 is the value to be loaded in the actual capture/compare 2 register (preload value).
-        /// It is loaded permanently if the preload feature is not selected in the TIMx_CCMR1 register (bit OC2PE). Else the preload value is copied in the active capture/compare 2 register when an update event occurs.
-        /// The active capture/compare register contains the value to be compared to the counter TIMx_CNT and signaled on OC2 output.
         /// If channel CC2 is configured as input: CCR2 is the counter value transferred by the last input capture 2 event (IC2). The TIMx_CCR2 register is read-only and cannot be programmed.
         @ReadWrite(bits: 0..<16)
         public var ccr2_field: CCR2_FIELD
@@ -922,10 +734,6 @@ extension TIM1 {
     /// TIM1 capture/compare register 3
     @Register(bitWidth: 16)
     public struct CCR3 {
-        /// Capture/Compare value
-        /// If channel CC3 is configured as output: CCR3 is the value to be loaded in the actual capture/compare 3 register (preload value).
-        /// It is loaded permanently if the preload feature is not selected in the TIMx_CCMR2 register (bit OC3PE). Else the preload value is copied in the active capture/compare 3 register when an update event occurs.
-        /// The active capture/compare register contains the value to be compared to the counter TIMx_CNT and signalled on OC3 output.
         /// If channel CC3 is configured as input: CCR3 is the counter value transferred by the last input capture 3 event (IC3). The TIMx_CCR3 register is read-only and cannot be programmed.
         @ReadWrite(bits: 0..<16)
         public var ccr3_field: CCR3_FIELD
@@ -934,10 +742,6 @@ extension TIM1 {
     /// TIM1 capture/compare register 4
     @Register(bitWidth: 16)
     public struct CCR4 {
-        /// Capture/Compare value
-        /// If channel CC4 is configured as output: CCR4 is the value to be loaded in the actual capture/compare 4 register (preload value).
-        /// It is loaded permanently if the preload feature is not selected in the TIMx_CCMR2 register (bit OC4PE). Else the preload value is copied in the active capture/compare 4 register when an update event occurs.
-        /// The active capture/compare register contains the value to be compared to the counter TIMx_CNT and signalled on OC4 output.
         /// If channel CC4 is configured as input: CCR4 is the counter value transferred by the last input capture 4 event (IC4). The TIMx_CCR4 register is read-only and cannot be programmed.
         @ReadWrite(bits: 0..<16)
         public var ccr4_field: CCR4_FIELD
@@ -946,111 +750,66 @@ extension TIM1 {
     /// TIM1 break and dead-time register
     @Register(bitWidth: 32)
     public struct BDTR {
-        /// Dead-time generator setup
-        /// This bit-field defines the duration of the dead-time inserted between the complementary outputs. DT correspond to this duration.
-        /// DTG[7:5] = 0xx => DT = DTG[7:0] x tDTG with tDTG = tDTS.
-        /// DTG[7:5] = 10x => DT = (64 + DTG[5:0]) x tDTG with tDTG = 2 x tDTS.
-        /// DTG[7:5] = 110 => DT = (32 + DTG[4:0]) x tDTG with tDTG = 8 x tDTS.
-        /// DTG[7:5] = 111 => DT = (32 + DTG[4:0]) x tDTG with tDTG = 16 x tDTS.
-        /// Example if tDTS = 125 ns (8 MHz), dead-time possible values are:
-        /// 0 to 15875 ns by 125 ns steps,
-        /// 16 μs to 31750 ns by 250 ns steps,
-        /// 32 μs to 63 μs by 1 μs steps,
-        /// 64 μs to 126 μs by 2 μs steps
         /// Note: This bit-field can not be modified as long as LOCK level 1, 2 or 3 has been programmed (LOCK bits in TIMx_BDTR register).
         @ReadWrite(bits: 0..<8)
         public var dtg: DTG
 
-        /// Lock configuration
-        /// These bits offer a write protection against software errors.
         /// Note: The LOCK bits can be written only once after the reset. Once the TIMx_BDTR register has been written, their content is frozen until the next reset.
         @ReadWrite(bits: 8..<10)
         public var lock: LOCK
 
-        /// Off-state selection for Idle mode
-        /// This bit is used when MOE=0 due to a break event or by a software write, on channels configured as outputs.
-        /// See OC/OCN enable description for more details (enable register (TIM1_CCERTIMx_CCER)N/A).
         /// Note: This bit can not be modified as soon as the LOCK level 2 has been programmed (LOCK bits in TIMx_BDTR register).
         @ReadWrite(bits: 10..<11)
         public var ossi: OSSI
 
-        /// Off-state selection for Run mode
-        /// This bit is used when MOE=1 on channels having a complementary output which are configured as outputs. OSSR is not implemented if no complementary output is implemented in the timer.
-        /// See OC/OCN enable description for more details (enable register (TIM1_CCERTIMx_CCER)N/A).
         /// Note: This bit can not be modified as soon as the LOCK level 2 has been programmed (LOCK bits in TIMx_BDTR register).
         @ReadWrite(bits: 11..<12)
         public var ossr: OSSR
 
-        /// Break enable
-        /// This bit enables the complete break protection (including all sources connected to bk_acth and BKIN sources, as per ).
-        /// Note: This bit cannot be modified when LOCK level 1 has been programmed (LOCK bits in TIMx_BDTR register).
         /// Note: Any write operation to this bit takes a delay of 1 APB clock cycle to become effective.
         @ReadWrite(bits: 12..<13)
         public var bke: BKE
 
-        /// Break polarity
-        /// Note: This bit can not be modified as long as LOCK level 1 has been programmed (LOCK bits in TIMx_BDTR register).
         /// Note: Any write operation to this bit takes a delay of 1 APB clock cycle to become effective.
         @ReadWrite(bits: 13..<14)
         public var bkp: BKP
 
-        /// Automatic output enable
         /// Note: This bit can not be modified as long as LOCK level 1 has been programmed (LOCK bits in TIMx_BDTR register).
         @ReadWrite(bits: 14..<15)
         public var aoe: AOE
 
-        /// Main output enable
-        /// This bit is cleared asynchronously by hardware as soon as one of the break inputs is active (BRK or BRK2). It is set by software or automatically depending on the AOE bit. It is acting only on the channels which are configured in output.
-        /// In response to a break event or if MOE is written to 0: OC and OCN outputs are disabled or forced to idle state depending on the OSSI bit.
         /// See OC/OCN enable description for more details (enable register (TIM1_CCERTIMx_CCER)N/A).
         @ReadWrite(bits: 15..<16)
         public var moe: MOE
 
-        /// Break filter
-        /// This bit-field defines the frequency used to sample BRK input and the length of the digital filter applied to BRK. The digital filter is made of an event counter in which N consecutive events are needed to validate a transition on the output:
         /// Note: This bit cannot be modified when LOCK level 1 has been programmed (LOCK bits in TIMx_BDTR register).
         @ReadWrite(bits: 16..<20)
         public var bkf: BKF
 
-        /// Break 2 filter
-        /// This bit-field defines the frequency used to sample BRK2 input and the length of the digital filter applied to BRK2. The digital filter is made of an event counter in which N consecutive events are needed to validate a transition on the output:
         /// Note: This bit cannot be modified when LOCK level 1 has been programmed (LOCK bits in TIMx_BDTR register).
         @ReadWrite(bits: 20..<24)
         public var bk2f: BK2F
 
-        /// Break 2 enable
-        /// Note: The BRK2 must only be used with OSSR = OSSI = 1.
-        /// Note: This bit cannot be modified when LOCK level 1 has been programmed (LOCK bits in TIMx_BDTR register).
         /// Note: Any write operation to this bit takes a delay of 1 APB clock cycle to become effective.
         @ReadWrite(bits: 24..<25)
         public var bk2e: BK2E
 
-        /// Break 2 polarity
-        /// Note: This bit cannot be modified as long as LOCK level 1 has been programmed (LOCK bits in TIMx_BDTR register).
         /// Note: Any write operation to this bit takes a delay of 1 APB clock cycle to become effective.
         @ReadWrite(bits: 25..<26)
         public var bk2p: BK2P
 
-        /// Break Disarm
-        /// This bit is cleared by hardware when no break source is active.
-        /// The BKDSRM bit must be set by software to release the bidirectional output control (open-drain output in Hi-Z state) and then be polled it until it is reset by hardware, indicating that the fault condition has disappeared.
         /// Note: Any write operation to this bit takes a delay of 1 APB clock cycle to become effective.
         @ReadWrite(bits: 26..<27)
         public var bkdsrm: BKDSRM
 
-        /// Break2 Disarm
         /// Refer to BKDSRM description
         @ReadWrite(bits: 27..<28)
         public var bk2dsrm: BK2DSRM
 
-        /// Break Bidirectional
-        /// In the bidirectional mode (BKBID bit set to 1), the break input is configured both in input mode and in open drain output mode. Any active break event asserts a low logic level on the Break input to indicate an internal break event to external devices.
-        /// Note: This bit cannot be modified as long as LOCK level 1 has been programmed (LOCK bits in TIMx_BDTR register).
         /// Note: Any write operation to this bit takes a delay of 1 APB clock cycle to become effective.
         @ReadWrite(bits: 28..<29)
         public var bkbid: BKBID
 
-        /// Break2 bidirectional
         /// Refer to BKBID description
         @ReadWrite(bits: 29..<30)
         public var bk2bid: BK2BID
@@ -1059,22 +818,10 @@ extension TIM1 {
     /// TIM1 DMA control register
     @Register(bitWidth: 16)
     public struct DCR {
-        /// DMA base address
-        /// This 5-bits vector defines the base-address for DMA transfers (when read/write access are done through the TIMx_DMAR address). DBA is defined as an offset starting from the address of the TIMx_CR1 register.
-        /// Example:
         /// ...
         @ReadWrite(bits: 0..<5)
         public var dba: DBA
 
-        /// DMA burst length
-        /// This 5-bit vector defines the length of DMA transfers (the timer recognizes a burst transfer when a read or a write access is done to the TIMx_DMAR address), i.e. the number of transfers. Transfers can be in half-words or in bytes (see example below).
-        /// ...
-        /// Example: Let us consider the following transfer: DBL = 7 bytes & DBA = TIMx_CR1.
-        /// If DBL = 7 bytes and DBA = TIMx_CR1 represents the address of the byte to be transferred, the address of the transfer should be given by the following equation:
-        /// (TIMx_CR1 address) + DBA + (DMA index), where DMA index = DBL
-        /// In this example, 7 bytes are added to (TIMx_CR1 address) + DBA, which gives us the address from/to which the data is copied. In this case, the transfer is done to 7 registers starting from the following address: (TIMx_CR1 address) + DBA
-        /// According to the configuration of the DMA Data Size, several cases may occur:
-        /// If the DMA Data Size is configured in half-words, 16-bit data is transferred to each of the 7 registers.
         /// If the DMA Data Size is configured in bytes, the data is also transferred to 7 registers: the first register contains the first MSB byte, the second register, the first LSB byte and so on. So with the transfer Timer, one also has to specify the size of data transferred by DMA.
         @ReadWrite(bits: 8..<13)
         public var dbl: DBL
@@ -1083,8 +830,6 @@ extension TIM1 {
     /// TIM1 DMA address for full transfer
     @Register(bitWidth: 32)
     public struct DMAR {
-        /// DMA register for burst accesses
-        /// A read or write operation to the DMAR register accesses the register located at the address (TIMx_CR1 address) + (DBA + DMA index) x 4
         /// where TIMx_CR1 address is the address of the control register 1, DBA is the DMA base address configured in TIMx_DCR register, DMA index is automatically controlled by the DMA transfer, and ranges from 0 to DBL (DBL configured in TIMx_DCR).
         @ReadWrite(bits: 0..<32)
         public var dmab: DMAB
@@ -1093,52 +838,42 @@ extension TIM1 {
     /// TIM1 capture/compare mode register 3
     @Register(bitWidth: 32)
     public struct CCMR3 {
-        /// Output compare 5 fast enable
         /// Refer to OC1FE description.
         @ReadWrite(bits: 2..<3)
         public var oc5fe: OC5FE
 
-        /// Output compare 5 preload enable
         /// Refer to OC1PE description.
         @ReadWrite(bits: 3..<4)
         public var oc5pe: OC5PE
 
-        /// Output compare 5 mode
         /// Refer to OC1M description.
         @ReadWrite(bits: 4..<7)
         public var oc5m1: OC5M1
 
-        /// Output compare 5 clear enable
         /// Refer to OC1CE description.
         @ReadWrite(bits: 7..<8)
         public var oc5ce: OC5CE
 
-        /// Output compare 6 fast enable
         /// Refer to OC1FE description.
         @ReadWrite(bits: 10..<11)
         public var oc6fe: OC6FE
 
-        /// Output compare 6 preload enable
         /// Refer to OC1PE description.
         @ReadWrite(bits: 11..<12)
         public var oc6pe: OC6PE
 
-        /// Output compare 6 mode
         /// Refer to OC1M description.
         @ReadWrite(bits: 12..<15)
         public var oc6m1: OC6M1
 
-        /// Output compare 6 clear enable
         /// Refer to OC1CE description.
         @ReadWrite(bits: 15..<16)
         public var oc6ce: OC6CE
 
-        /// Output compare 5 mode
         /// Refer to OC1M description.
         @ReadWrite(bits: 16..<17)
         public var oc5m2: OC5M2
 
-        /// Output compare 6 mode
         /// Refer to OC1M description.
         @ReadWrite(bits: 24..<25)
         public var oc6m2: OC6M2
@@ -1147,30 +882,18 @@ extension TIM1 {
     /// TIM1 capture/compare register 5
     @Register(bitWidth: 32)
     public struct CCR5 {
-        /// Capture/Compare 5 value
-        /// CCR5 is the value to be loaded in the actual capture/compare 5 register (preload value).
-        /// It is loaded permanently if the preload feature is not selected in the TIMx_CCMR3 register (bit OC5PE). Else the preload value is copied in the active capture/compare 5 register when an update event occurs.
         /// The active capture/compare register contains the value to be compared to the counter TIMx_CNT and signaled on OC5 output.
         @ReadWrite(bits: 0..<16)
         public var ccr5_field: CCR5_FIELD
 
-        /// Group Channel 5 and Channel 1
-        /// Distortion on Channel 1 output:
-        /// This bit can either have immediate effect or be preloaded and taken into account after an update event (if preload feature is selected in TIMxCCMR1).
         /// Note: it is also possible to apply this distortion on combined PWM signals.
         @ReadWrite(bits: 29..<30)
         public var gc5c1: GC5C1
 
-        /// Group Channel 5 and Channel 2
-        /// Distortion on Channel 2 output:
-        /// This bit can either have immediate effect or be preloaded and taken into account after an update event (if preload feature is selected in TIMxCCMR1).
         /// Note: it is also possible to apply this distortion on combined PWM signals.
         @ReadWrite(bits: 30..<31)
         public var gc5c2: GC5C2
 
-        /// Group Channel 5 and Channel 3
-        /// Distortion on Channel 3 output:
-        /// This bit can either have immediate effect or be preloaded and taken into account after an update event (if preload feature is selected in TIMxCCMR2).
         /// Note: it is also possible to apply this distortion on combined PWM signals.
         @ReadWrite(bits: 31..<32)
         public var gc5c3: GC5C3
@@ -1179,9 +902,6 @@ extension TIM1 {
     /// TIM1 capture/compare register 6
     @Register(bitWidth: 16)
     public struct CCR6 {
-        /// Capture/Compare 6 value
-        /// CCR6 is the value to be loaded in the actual capture/compare 6 register (preload value).
-        /// It is loaded permanently if the preload feature is not selected in the TIMx_CCMR3 register (bit OC6PE). Else the preload value is copied in the active capture/compare 6 register when an update event occurs.
         /// The active capture/compare register contains the value to be compared to the counter TIMx_CNT and signaled on OC6 output.
         @ReadWrite(bits: 0..<16)
         public var ccr6_field: CCR6_FIELD
@@ -1190,21 +910,14 @@ extension TIM1 {
     /// TIM1 alternate function option register 1
     @Register(bitWidth: 32)
     public struct AF1 {
-        /// BRK BKIN input enable
-        /// This bit enables the BKIN alternate function input for the timer’s BRK input. BKIN input is ‘ORed’ with the other BRK sources.
         /// Note: This bit can not be modified as long as LOCK level 1 has been programmed (LOCK bits in TIMx_BDTR register).
         @ReadWrite(bits: 0..<1)
         public var bkine: BKINE
 
-        /// BRK BKIN input polarity
-        /// This bit selects the BKIN alternate function input sensitivity. It must be programmed together with the BKP polarity bit.
         /// Note: This bit can not be modified as long as LOCK level 1 has been programmed (LOCK bits in TIMx_BDTR register).
         @ReadWrite(bits: 9..<10)
         public var bkinp: BKINP
 
-        /// ETR source selection
-        /// These bits select the ETR input source.
-        /// Others: Reserved
         /// Note: These bits can not be modified as long as LOCK level 1 has been programmed (LOCK bits in TIMx_BDTR register).
         @ReadWrite(bits: 14..<18)
         public var etrsel: ETRSEL
@@ -1213,14 +926,10 @@ extension TIM1 {
     /// TIM1 Alternate function register 2
     @Register(bitWidth: 32)
     public struct AF2 {
-        /// BRK2 BKIN input enable
-        /// This bit enables the BKIN2 alternate function input for the timer’s BRK2 input. BKIN2 input is ‘ORed’ with the other BRK2 sources.
         /// Note: This bit can not be modified as long as LOCK level 1 has been programmed (LOCK bits in TIMx_BDTR register).
         @ReadWrite(bits: 0..<1)
         public var bk2ine: BK2INE
 
-        /// BRK2 BKIN2 input polarity
-        /// This bit selects the BKIN2 alternate function input sensitivity. It must be programmed together with the BK2P polarity bit.
         /// Note: This bit can not be modified as long as LOCK level 1 has been programmed (LOCK bits in TIMx_BDTR register).
         @ReadWrite(bits: 9..<10)
         public var bk2inp: BK2INP
@@ -1229,22 +938,18 @@ extension TIM1 {
     /// TIM1 timer input selection register
     @Register(bitWidth: 32)
     public struct TISEL {
-        /// selects TI1[0] to TI1[15] input
         /// Others: Reserved
         @ReadWrite(bits: 0..<4)
         public var ti1sel: TI1SEL
 
-        /// selects TI2[0] to TI2[15] input
         /// Others: Reserved
         @ReadWrite(bits: 8..<12)
         public var ti2sel: TI2SEL
 
-        /// selects TI3[0] to TI3[15] input
         /// Others: Reserved
         @ReadWrite(bits: 16..<20)
         public var ti3sel: TI3SEL
 
-        /// selects TI4[0] to TI4[15] input
         /// Others: Reserved
         @ReadWrite(bits: 24..<28)
         public var ti4sel: TI4SEL

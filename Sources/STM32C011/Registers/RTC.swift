@@ -126,7 +126,6 @@ extension RTC {
         @ReadWrite(bits: 12..<13)
         public var mt: MT
 
-        /// Week day units
         /// ...
         @ReadWrite(bits: 13..<16)
         public var wdu: WDU
@@ -143,9 +142,6 @@ extension RTC {
     /// RTC sub second register
     @Register(bitWidth: 32)
     public struct SSR {
-        /// Sub second value
-        /// SS[15:0] is the value in the synchronous prescaler counter. The fraction of a second is given by the formula below:
-        /// Second fraction = (PREDIV_S - SS) / (PREDIV_S + 1)
         /// Note: SS can be larger than PREDIV_S only after a shift operation. In that case, the correct time/date is one second less than as indicated by RTC_TR/RTC_DR.
         @ReadOnly(bits: 0..<16)
         public var ss: SS
@@ -154,29 +150,22 @@ extension RTC {
     /// RTC initialization control and status register
     @Register(bitWidth: 32)
     public struct ICSR {
-        /// Alarm A write flag
-        /// This bit is set by hardware when alarm A values can be changed, after the ALRAE bit has been set to 0 in RTC_CR.
         /// It is cleared by hardware in initialization mode.
         @ReadOnly(bits: 0..<1)
         public var alrawf: ALRAWF
 
-        /// Shift operation pending
         /// This flag is set by hardware as soon as a shift operation is initiated by a write to the RTC_SHIFTR register. It is cleared by hardware when the corresponding shift operation has been executed. Writing to the SHPF bit has no effect.
         @ReadOnly(bits: 3..<4)
         public var shpf: SHPF
 
-        /// Initialization status flag
         /// This bit is set by hardware when the calendar year field is different from 0 (Power-on reset state).
         @ReadOnly(bits: 4..<5)
         public var inits: INITS
 
-        /// Registers synchronization flag
-        /// This bit is set by hardware each time the calendar registers are copied into the shadow registers (RTC_SSR, RTC_TR and RTC_DR). This bit is cleared by hardware in initialization mode, while a shift operation is pending (SHPF = 1), or when in bypass shadow register mode (BYPSHAD = 1). This bit can also be cleared by software.
         /// It is cleared either by software or by hardware in initialization mode.
         @ReadWrite(bits: 5..<6)
         public var rsf: RSF
 
-        /// Initialization flag
         /// When this bit is set to 1, the RTC is in initialization state, and the time, date and prescaler registers can be updated.
         @ReadOnly(bits: 6..<7)
         public var initf: INITF
@@ -185,7 +174,6 @@ extension RTC {
         @ReadWrite(bits: 7..<8)
         public var `init`: INIT
 
-        /// Recalibration pending Flag
         /// The RECALPF status flag is automatically set to 1 when software writes to the RTC_CALR register, indicating that the RTC_CALR register is blocked. When the new calibration settings are taken into account, this bit returns to 0. Refer to .
         @ReadOnly(bits: 16..<17)
         public var recalpf: RECALPF
@@ -194,14 +182,10 @@ extension RTC {
     /// RTC prescaler register
     @Register(bitWidth: 32)
     public struct PRER {
-        /// Synchronous prescaler factor
-        /// This is the synchronous division factor:
         /// ck_spre frequency = ck_apre frequency/(PREDIV_S+1)
         @ReadWrite(bits: 0..<15)
         public var prediv_s: PREDIV_S
 
-        /// Asynchronous prescaler factor
-        /// This is the asynchronous division factor:
         /// ck_apre frequency = RTCCLK frequency/(PREDIV_A+1)
         @ReadWrite(bits: 16..<23)
         public var prediv_a: PREDIV_A
@@ -210,17 +194,14 @@ extension RTC {
     /// RTC control register
     @Register(bitWidth: 32)
     public struct CR {
-        /// Timestamp event active edge
         /// TSE must be reset when TSEDGE is changed to avoid unwanted TSF setting.
         @ReadWrite(bits: 3..<4)
         public var tsedge: TSEDGE
 
-        /// RTC_REFIN reference clock detection enable (50 or 60 Hz)
         /// Note: PREDIV_S must be 0x00FF.
         @ReadWrite(bits: 4..<5)
         public var refckon: REFCKON
 
-        /// Bypass the shadow registers
         /// Note: If the frequency of the APB1 clock is less than seven times the frequency of RTCCLK, BYPSHAD must be set to 1.
         @ReadWrite(bits: 5..<6)
         public var bypshad: BYPSHAD
@@ -245,39 +226,30 @@ extension RTC {
         @ReadWrite(bits: 15..<16)
         public var tsie: TSIE
 
-        /// Add 1 hour (summer time change)
         /// When this bit is set outside initialization mode, 1 hour is added to the calendar time. This bit is always read as 0.
         @WriteOnly(bits: 16..<17)
         public var add1h: ADD1H
 
-        /// Subtract 1 hour (winter time change)
-        /// When this bit is set outside initialization mode, 1 hour is subtracted to the calendar time if the current hour is not 0. This bit is always read as 0.
         /// Setting this bit has no effect when current hour is 0.
         @WriteOnly(bits: 17..<18)
         public var sub1h: SUB1H
 
-        /// Backup
         /// This bit can be written by the user to memorize whether the daylight saving time change has been performed or not.
         @ReadWrite(bits: 18..<19)
         public var bkp: BKP
 
-        /// Calibration output selection
-        /// When COE = 1, this bit selects which signal is output on CALIB.
         /// These frequencies are valid for RTCCLK at 32.768 kHz and prescalers at their default values (PREDIV_A = 127 and PREDIV_S = 255). Refer to .
         @ReadWrite(bits: 19..<20)
         public var cosel: COSEL
 
-        /// Output polarity
         /// This bit is used to configure the polarity of TAMPALRM output.
         @ReadWrite(bits: 20..<21)
         public var pol: POL
 
-        /// Output selection
         /// These bits are used to select the flag to be routed to TAMPALRM output.
         @ReadWrite(bits: 21..<23)
         public var osel: OSEL
 
-        /// Calibration output enable
         /// This bit enables the CALIB output
         @ReadWrite(bits: 23..<24)
         public var coe: COE
@@ -290,14 +262,6 @@ extension RTC {
         @ReadWrite(bits: 30..<31)
         public var tampalrm_type: TAMPALRM_TYPE
 
-        /// RTC_OUT2 output enable
-        /// Setting this bit allows to remap the RTC outputs on RTC_OUT2 as follows:
-        /// OUT2EN = 0: RTC output 2 disable
-        /// If OSEL ≠ 00 or TAMPOE = 1: TAMPALRM is output on RTC_OUT1
-        /// If OSEL = 00 and TAMPOE = 0 and COE = 1: CALIB is output on RTC_OUT1
-        /// OUT2EN = 1: RTC output 2 enable
-        /// If (OSEL ≠ 00 or TAMPOE = 1) and COE = 0: TAMPALRM is output on RTC_OUT2
-        /// If OSEL = 00 and TAMPOE = 0 and COE = 1: CALIB is output on RTC_OUT2
         /// If (OSEL≠ 00 or TAMPOE = 1) and COE = 1: CALIB is output on RTC_OUT2 and TAMPALRM is output on RTC_OUT1.
         @ReadWrite(bits: 31..<32)
         public var out2en: OUT2EN
@@ -306,9 +270,6 @@ extension RTC {
     /// RTC write protection register
     @Register(bitWidth: 32)
     public struct WPR {
-        /// Write protection key
-        /// This byte is written by software.
-        /// Reading this byte always returns 0x00.
         /// Refer to for a description of how to unlock RTC register write protection.
         @WriteOnly(bits: 0..<8)
         public var key: KEY
@@ -317,26 +278,18 @@ extension RTC {
     /// RTC calibration register
     @Register(bitWidth: 32)
     public struct CALR {
-        /// Calibration minus
-        /// The frequency of the calendar is reduced by masking CALM out of 220 RTCCLK pulses (32 seconds if the input frequency is 32768 Hz). This decreases the frequency of the calendar with a resolution of 0.9537 ppm.
         /// To increase the frequency of the calendar, this feature should be used in conjunction with CALP. See .
         @ReadWrite(bits: 0..<9)
         public var calm: CALM
 
-        /// Use a 16-second calibration cycle period
-        /// When CALW16 is set to 1, the 16-second calibration cycle period is selected. This bit must not be set to 1 if CALW8 = 1.
         /// Note: CALM[0] is stuck at 0 when CALW16 = 1. Refer to calibration.
         @ReadWrite(bits: 13..<14)
         public var calw16: CALW16
 
-        /// Use an 8-second calibration cycle period
-        /// When CALW8 is set to 1, the 8-second calibration cycle period is selected.
         /// Note: CALM[1:0] are stuck at 00 when CALW8 = 1. Refer to digital calibration.
         @ReadWrite(bits: 14..<15)
         public var calw8: CALW8
 
-        /// Increase frequency of RTC by 488.5 ppm
-        /// This feature is intended to be used in conjunction with CALM, which lowers the frequency of the calendar with a fine resolution. if the input frequency is 32768 Hz, the number of RTCCLK pulses added during a 32-second window is calculated as follows: (512 � CALP) - CALM.
         /// Refer to .
         @ReadWrite(bits: 15..<16)
         public var calp: CALP
@@ -345,18 +298,10 @@ extension RTC {
     /// RTC shift control register
     @Register(bitWidth: 32)
     public struct SHIFTR {
-        /// Subtract a fraction of a second
-        /// These bits are write only and is always read as zero. Writing to this bit has no effect when a shift operation is pending (when SHPF = 1, in RTC_ICSR).
-        /// The value which is written to SUBFS is added to the synchronous prescaler counter. Since this counter counts down, this operation effectively subtracts from (delays) the clock by:
-        /// Delay (seconds) = SUBFS / (PREDIV_S + 1)
-        /// A fraction of a second can effectively be added to the clock (advancing the clock) when the ADD1S function is used in conjunction with SUBFS, effectively advancing the clock by:
-        /// Advance (seconds) = (1 - (SUBFS / (PREDIV_S + 1))).
         /// Note: Writing to SUBFS causes RSF to be cleared. Software can then wait until RSF = 1 to be sure that the shadow registers have been updated with the shifted time.
         @WriteOnly(bits: 0..<15)
         public var subfs: SUBFS
 
-        /// Add one second
-        /// This bit is write only and is always read as zero. Writing to this bit has no effect when a shift operation is pending (when SHPF = 1, in RTC_ICSR).
         /// This function is intended to be used with SUBFS (see description below) in order to effectively add a fraction of a second to the clock in an atomic operation.
         @WriteOnly(bits: 31..<32)
         public var add1s: ADD1S
@@ -421,7 +366,6 @@ extension RTC {
     /// RTC timestamp sub second register
     @Register(bitWidth: 32)
     public struct TSSSR {
-        /// Sub second value
         /// SS[15:0] is the value of the synchronous prescaler counter when the timestamp event occurred.
         @ReadOnly(bits: 0..<16)
         public var ss: SS
@@ -490,20 +434,10 @@ extension RTC {
     /// RTC alarm A sub second register
     @Register(bitWidth: 32)
     public struct ALRMASSR {
-        /// Sub seconds value
         /// This value is compared with the contents of the synchronous prescaler counter to determine if alarm A is to be activated. Only bits 0 up MASKSS-1 are compared.
         @ReadWrite(bits: 0..<15)
         public var ss: SS
 
-        /// Mask the most-significant bits starting at this bit
-        /// 2:	SS[14:2] are don’t care in alarm A comparison. Only SS[1:0] are compared.
-        /// 3:	SS[14:3] are don’t care in alarm A comparison. Only SS[2:0] are compared.
-        /// ...
-        /// 12:	SS[14:12] are don’t care in alarm A comparison. SS[11:0] are compared.
-        /// 13:	SS[14:13] are don’t care in alarm A comparison. SS[12:0] are compared.
-        /// 14:	SS[14] is don’t care in alarm A comparison. SS[13:0] are compared.
-        /// 15:	All 15 SS bits are compared and must match to activate alarm.
-        /// The overflow bits of the synchronous counter (bits 15) is never compared. This bit can be different from 0 only after a shift operation.
         /// Note: The overflow bits of the synchronous counter (bits 15) is never compared. This bit can be different from 0 only after a shift operation.
         @ReadWrite(bits: 24..<28)
         public var maskss: MASKSS
@@ -512,18 +446,14 @@ extension RTC {
     /// RTC status register
     @Register(bitWidth: 32)
     public struct SR {
-        /// Alarm A flag
         /// This flag is set by hardware when the time/date registers (RTC_TR and RTC_DR) match the alarm A register (RTC_ALRMAR).
         @ReadOnly(bits: 0..<1)
         public var alraf: ALRAF
 
-        /// Timestamp flag
         /// This flag is set by hardware when a timestamp event occurs.
         @ReadOnly(bits: 3..<4)
         public var tsf: TSF
 
-        /// Timestamp overflow flag
-        /// This flag is set by hardware when a timestamp event occurs while TSF is already set.
         /// It is recommended to check and then clear TSOVF only after clearing the TSF bit. Otherwise, an overflow might not be noticed if a timestamp event occurs immediately before the TSF bit is cleared.
         @ReadOnly(bits: 4..<5)
         public var tsovf: TSOVF
@@ -532,18 +462,14 @@ extension RTC {
     /// RTC masked interrupt status register
     @Register(bitWidth: 32)
     public struct MISR {
-        /// Alarm A masked flag
         /// This flag is set by hardware when the alarm A interrupt occurs.
         @ReadOnly(bits: 0..<1)
         public var alramf: ALRAMF
 
-        /// Timestamp masked flag
         /// This flag is set by hardware when a timestamp interrupt occurs.
         @ReadOnly(bits: 3..<4)
         public var tsmf: TSMF
 
-        /// Timestamp overflow masked flag
-        /// This flag is set by hardware when a timestamp interrupt occurs while TSMF is already set.
         /// It is recommended to check and then clear TSOVF only after clearing the TSF bit. Otherwise, an overflow might not be noticed if a timestamp event occurs immediately before the TSF bit is cleared.
         @ReadOnly(bits: 4..<5)
         public var tsovmf: TSOVMF
@@ -552,18 +478,14 @@ extension RTC {
     /// RTC status clear register
     @Register(bitWidth: 32)
     public struct SCR {
-        /// Clear alarm A flag
         /// Writing 1 in this bit clears the ALRAF bit in the RTC_SR register.
         @WriteOnly(bits: 0..<1)
         public var calraf: CALRAF
 
-        /// Clear timestamp flag
         /// Writing 1 in this bit clears the TSOVF bit in the RTC_SR register.
         @WriteOnly(bits: 3..<4)
         public var ctsf: CTSF
 
-        /// Clear timestamp overflow flag
-        /// Writing 1 in this bit clears the TSOVF bit in the RTC_SR register.
         /// It is recommended to check and then clear TSOVF only after clearing the TSF bit. Otherwise, an overflow might not be noticed if a timestamp event occurs immediately before the TSF bit is cleared.
         @WriteOnly(bits: 4..<5)
         public var ctsovf: CTSOVF

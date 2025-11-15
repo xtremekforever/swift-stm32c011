@@ -22,13 +22,10 @@ extension WWDG {
     /// WWDG control register
     @Register(bitWidth: 32)
     public struct CR {
-        /// 7-bit counter (MSB to LSB)
-        /// These bits contain the value of the watchdog counter, decremented every
         /// (4096 x 2WDGTB[1:0]) PCLK cycles. A reset is produced when it is decremented from 0x40 to 0x3F (T6 becomes cleared).
         @ReadWrite(bits: 0..<7)
         public var t: T
 
-        /// Activation bit
         /// This bit is set by software and only cleared by hardware after a reset. When WDGA = 1, the watchdog can generate a reset.
         @ReadWrite(bits: 7..<8)
         public var wdga: WDGA
@@ -37,17 +34,14 @@ extension WWDG {
     /// WWDG configuration register
     @Register(bitWidth: 32)
     public struct CFR {
-        /// 7-bit window value
         /// These bits contain the window value to be compared with the down-counter.
         @ReadWrite(bits: 0..<7)
         public var w: W
 
-        /// Early wakeup interrupt
         /// When set, an interrupt occurs whenever the counter reaches the value 0x40. This interrupt is only cleared by hardware after a reset.
         @ReadWrite(bits: 9..<10)
         public var ewi: EWI
 
-        /// Timer base
         /// The timebase of the prescaler can be modified as follows:
         @ReadWrite(bits: 11..<14)
         public var wdgtb: WDGTB
@@ -56,7 +50,6 @@ extension WWDG {
     /// WWDG status register
     @Register(bitWidth: 32)
     public struct SR {
-        /// Early wakeup interrupt flag
         /// This bit is set by hardware when the counter has reached the value 0x40. It must be cleared by software by writing ‘0’. Writing ‘1’ has no effect. This bit is also set if the interrupt is not enabled.
         @ReadWrite(bits: 0..<1)
         public var ewif: EWIF

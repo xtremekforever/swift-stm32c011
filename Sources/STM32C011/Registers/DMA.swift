@@ -170,102 +170,50 @@ extension DMA {
     /// DMA channel 1 configuration register
     @Register(bitWidth: 32)
     public struct CCR1 {
-        /// channel enable
-        /// When a channel transfer error occurs, this bit is cleared by hardware. It can not be set again by software (channel x re-activated) until the TEIFx bit of the DMA_ISR register is cleared (by setting the CTEIFx bit of the DMA_IFCR register).
         /// Note: this bit is set and cleared by software.
         @ReadWrite(bits: 0..<1)
         public var en: EN
 
-        /// transfer complete interrupt enable
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 1..<2)
         public var tcie: TCIE
 
-        /// half transfer interrupt enable
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 2..<3)
         public var htie: HTIE
 
-        /// transfer error interrupt enable
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 3..<4)
         public var teie: TEIE
 
-        /// data transfer direction
-        /// This bit must be set only in memory-to-peripheral and peripheral-to-memory modes.
-        /// Source attributes are defined by PSIZE and PINC, plus the DMA_CPARx register. This is still valid in a memory-to-memory mode.
-        /// Destination attributes are defined by MSIZE and MINC, plus the DMA_CMARx register. This is still valid in a peripheral-to-peripheral mode.
-        /// Destination attributes are defined by PSIZE and PINC, plus the DMA_CPARx register. This is still valid in a memory-to-memory mode.
-        /// Source attributes are defined by MSIZE and MINC, plus the DMA_CMARx register. This is still valid in a peripheral-to-peripheral mode.
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 4..<5)
         public var dir: DIR
 
-        /// circular mode
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 5..<6)
         public var circ: CIRC
 
-        /// peripheral increment mode
-        /// Defines the increment mode for each DMA transfer to the identified peripheral.
-        /// n memory-to-memory mode, this field identifies the memory destination if DIR = 1 and the memory source if DIR = 0.
-        /// In peripheral-to-peripheral mode, this field identifies the peripheral destination if DIR = 1 and the peripheral source if DIR = 0.
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 6..<7)
         public var pinc: PINC
 
-        /// memory increment mode
-        /// Defines the increment mode for each DMA transfer to the identified memory.
-        /// In memory-to-memory mode, this field identifies the memory source if DIR = 1 and the memory destination if DIR = 0.
-        /// In peripheral-to-peripheral mode, this field identifies the peripheral source if DIR = 1 and the peripheral destination if DIR = 0.
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 7..<8)
         public var minc: MINC
 
-        /// peripheral size
-        /// Defines the data size of each DMA transfer to the identified peripheral.
-        /// In memory-to-memory mode, this field identifies the memory destination if DIR = 1 and the memory source if DIR = 0.
-        /// In peripheral-to-peripheral mode, this field identifies the peripheral destination if DIR = 1 and the peripheral source if DIR = 0.
-        /// Note: this field is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 8..<10)
         public var psize: PSIZE
 
-        /// memory size
-        /// Defines the data size of each DMA transfer to the identified memory.
-        /// In memory-to-memory mode, this field identifies the memory source if DIR = 1 and the memory destination if DIR = 0.
-        /// In peripheral-to-peripheral mode, this field identifies the peripheral source if DIR = 1 and the peripheral destination if DIR = 0.
-        /// Note: this field is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 10..<12)
         public var msize: MSIZE
 
-        /// priority level
-        /// Note: this field is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 12..<14)
         public var pl: PL
 
-        /// memory-to-memory mode
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 14..<15)
         public var mem2mem: MEM2MEM
@@ -274,14 +222,6 @@ extension DMA {
     /// DMA channel 1 number of data to transfer register
     @Register(bitWidth: 32)
     public struct CNDTR1 {
-        /// number of data to transfer (0 to 216 - 1)
-        /// This field is updated by hardware when the channel is enabled:
-        /// It is decremented after each single DMA ‘read followed by write’ transfer, indicating the remaining amount of data items to transfer.
-        /// It is kept at zero when the programmed amount of data to transfer is reached, if the channel is not in circular mode (CIRC = 0 in the DMA_CCRx register).
-        /// It is reloaded automatically by the previously programmed value, when the transfer is complete, if the channel is in circular mode (CIRC = 1).
-        /// If this field is zero, no transfer can be served whatever the channel status (enabled or not).
-        /// Note: this field is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 0..<16)
         public var ndt: NDT
@@ -290,14 +230,6 @@ extension DMA {
     /// DMA channel 1 peripheral address register
     @Register(bitWidth: 32)
     public struct CPAR1 {
-        /// peripheral address
-        /// It contains the base address of the peripheral data register from/to which the data will be read/written.
-        /// When PSIZE[1:0] = 01 (16 bits), bit 0 of PA[31:0] is ignored. Access is automatically aligned to a half-word address.
-        /// When PSIZE = 10 (32 bits), bits 1 and 0 of PA[31:0] are ignored. Access is automatically aligned to a word address.
-        /// In memory-to-memory mode, this register identifies the memory destination address if DIR = 1 and the memory source address if DIR = 0.
-        /// In peripheral-to-peripheral mode, this register identifies the peripheral destination address DIR = 1 and the peripheral source address if DIR = 0.
-        /// Note: this register is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 0..<32)
         public var pa: PA
@@ -306,14 +238,6 @@ extension DMA {
     /// DMA channel 1 memory address register
     @Register(bitWidth: 32)
     public struct CMAR1 {
-        /// peripheral address
-        /// It contains the base address of the memory from/to which the data will be read/written.
-        /// When MSIZE[1:0] = 01 (16 bits), bit 0 of MA[31:0] is ignored. Access is automatically aligned to a half-word address.
-        /// When MSIZE = 10 (32 bits), bits 1 and 0 of MA[31:0] are ignored. Access is automatically aligned to a word address.
-        /// In memory-to-memory mode, this register identifies the memory source address if DIR = 1 and the memory destination address if DIR = 0.
-        /// In peripheral-to-peripheral mode, this register identifies the peripheral source address DIR = 1 and the peripheral destination address if DIR = 0.
-        /// Note: this register is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 0..<32)
         public var ma: MA
@@ -322,102 +246,50 @@ extension DMA {
     /// DMA channel 2 configuration register
     @Register(bitWidth: 32)
     public struct CCR2 {
-        /// channel enable
-        /// When a channel transfer error occurs, this bit is cleared by hardware. It can not be set again by software (channel x re-activated) until the TEIFx bit of the DMA_ISR register is cleared (by setting the CTEIFx bit of the DMA_IFCR register).
         /// Note: this bit is set and cleared by software.
         @ReadWrite(bits: 0..<1)
         public var en: EN
 
-        /// transfer complete interrupt enable
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 1..<2)
         public var tcie: TCIE
 
-        /// half transfer interrupt enable
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 2..<3)
         public var htie: HTIE
 
-        /// transfer error interrupt enable
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 3..<4)
         public var teie: TEIE
 
-        /// data transfer direction
-        /// This bit must be set only in memory-to-peripheral and peripheral-to-memory modes.
-        /// Source attributes are defined by PSIZE and PINC, plus the DMA_CPARx register. This is still valid in a memory-to-memory mode.
-        /// Destination attributes are defined by MSIZE and MINC, plus the DMA_CMARx register. This is still valid in a peripheral-to-peripheral mode.
-        /// Destination attributes are defined by PSIZE and PINC, plus the DMA_CPARx register. This is still valid in a memory-to-memory mode.
-        /// Source attributes are defined by MSIZE and MINC, plus the DMA_CMARx register. This is still valid in a peripheral-to-peripheral mode.
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 4..<5)
         public var dir: DIR
 
-        /// circular mode
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 5..<6)
         public var circ: CIRC
 
-        /// peripheral increment mode
-        /// Defines the increment mode for each DMA transfer to the identified peripheral.
-        /// n memory-to-memory mode, this field identifies the memory destination if DIR = 1 and the memory source if DIR = 0.
-        /// In peripheral-to-peripheral mode, this field identifies the peripheral destination if DIR = 1 and the peripheral source if DIR = 0.
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 6..<7)
         public var pinc: PINC
 
-        /// memory increment mode
-        /// Defines the increment mode for each DMA transfer to the identified memory.
-        /// In memory-to-memory mode, this field identifies the memory source if DIR = 1 and the memory destination if DIR = 0.
-        /// In peripheral-to-peripheral mode, this field identifies the peripheral source if DIR = 1 and the peripheral destination if DIR = 0.
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 7..<8)
         public var minc: MINC
 
-        /// peripheral size
-        /// Defines the data size of each DMA transfer to the identified peripheral.
-        /// In memory-to-memory mode, this field identifies the memory destination if DIR = 1 and the memory source if DIR = 0.
-        /// In peripheral-to-peripheral mode, this field identifies the peripheral destination if DIR = 1 and the peripheral source if DIR = 0.
-        /// Note: this field is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 8..<10)
         public var psize: PSIZE
 
-        /// memory size
-        /// Defines the data size of each DMA transfer to the identified memory.
-        /// In memory-to-memory mode, this field identifies the memory source if DIR = 1 and the memory destination if DIR = 0.
-        /// In peripheral-to-peripheral mode, this field identifies the peripheral source if DIR = 1 and the peripheral destination if DIR = 0.
-        /// Note: this field is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 10..<12)
         public var msize: MSIZE
 
-        /// priority level
-        /// Note: this field is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 12..<14)
         public var pl: PL
 
-        /// memory-to-memory mode
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 14..<15)
         public var mem2mem: MEM2MEM
@@ -426,14 +298,6 @@ extension DMA {
     /// DMA channel 2 number of data to transfer register
     @Register(bitWidth: 32)
     public struct CNDTR2 {
-        /// number of data to transfer (0 to 216 - 1)
-        /// This field is updated by hardware when the channel is enabled:
-        /// It is decremented after each single DMA ‘read followed by write’ transfer, indicating the remaining amount of data items to transfer.
-        /// It is kept at zero when the programmed amount of data to transfer is reached, if the channel is not in circular mode (CIRC = 0 in the DMA_CCRx register).
-        /// It is reloaded automatically by the previously programmed value, when the transfer is complete, if the channel is in circular mode (CIRC = 1).
-        /// If this field is zero, no transfer can be served whatever the channel status (enabled or not).
-        /// Note: this field is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 0..<16)
         public var ndt: NDT
@@ -442,14 +306,6 @@ extension DMA {
     /// DMA channel 2 peripheral address register
     @Register(bitWidth: 32)
     public struct CPAR2 {
-        /// peripheral address
-        /// It contains the base address of the peripheral data register from/to which the data will be read/written.
-        /// When PSIZE[1:0] = 01 (16 bits), bit 0 of PA[31:0] is ignored. Access is automatically aligned to a half-word address.
-        /// When PSIZE = 10 (32 bits), bits 1 and 0 of PA[31:0] are ignored. Access is automatically aligned to a word address.
-        /// In memory-to-memory mode, this register identifies the memory destination address if DIR = 1 and the memory source address if DIR = 0.
-        /// In peripheral-to-peripheral mode, this register identifies the peripheral destination address DIR = 1 and the peripheral source address if DIR = 0.
-        /// Note: this register is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 0..<32)
         public var pa: PA
@@ -458,14 +314,6 @@ extension DMA {
     /// DMA channel 2 memory address register
     @Register(bitWidth: 32)
     public struct CMAR2 {
-        /// peripheral address
-        /// It contains the base address of the memory from/to which the data will be read/written.
-        /// When MSIZE[1:0] = 01 (16 bits), bit 0 of MA[31:0] is ignored. Access is automatically aligned to a half-word address.
-        /// When MSIZE = 10 (32 bits), bits 1 and 0 of MA[31:0] are ignored. Access is automatically aligned to a word address.
-        /// In memory-to-memory mode, this register identifies the memory source address if DIR = 1 and the memory destination address if DIR = 0.
-        /// In peripheral-to-peripheral mode, this register identifies the peripheral source address DIR = 1 and the peripheral destination address if DIR = 0.
-        /// Note: this register is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 0..<32)
         public var ma: MA
@@ -474,102 +322,50 @@ extension DMA {
     /// DMA channel 3 configuration register
     @Register(bitWidth: 32)
     public struct CCR3 {
-        /// channel enable
-        /// When a channel transfer error occurs, this bit is cleared by hardware. It can not be set again by software (channel x re-activated) until the TEIFx bit of the DMA_ISR register is cleared (by setting the CTEIFx bit of the DMA_IFCR register).
         /// Note: this bit is set and cleared by software.
         @ReadWrite(bits: 0..<1)
         public var en: EN
 
-        /// transfer complete interrupt enable
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 1..<2)
         public var tcie: TCIE
 
-        /// half transfer interrupt enable
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 2..<3)
         public var htie: HTIE
 
-        /// transfer error interrupt enable
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 3..<4)
         public var teie: TEIE
 
-        /// data transfer direction
-        /// This bit must be set only in memory-to-peripheral and peripheral-to-memory modes.
-        /// Source attributes are defined by PSIZE and PINC, plus the DMA_CPARx register. This is still valid in a memory-to-memory mode.
-        /// Destination attributes are defined by MSIZE and MINC, plus the DMA_CMARx register. This is still valid in a peripheral-to-peripheral mode.
-        /// Destination attributes are defined by PSIZE and PINC, plus the DMA_CPARx register. This is still valid in a memory-to-memory mode.
-        /// Source attributes are defined by MSIZE and MINC, plus the DMA_CMARx register. This is still valid in a peripheral-to-peripheral mode.
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 4..<5)
         public var dir: DIR
 
-        /// circular mode
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 5..<6)
         public var circ: CIRC
 
-        /// peripheral increment mode
-        /// Defines the increment mode for each DMA transfer to the identified peripheral.
-        /// n memory-to-memory mode, this field identifies the memory destination if DIR = 1 and the memory source if DIR = 0.
-        /// In peripheral-to-peripheral mode, this field identifies the peripheral destination if DIR = 1 and the peripheral source if DIR = 0.
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 6..<7)
         public var pinc: PINC
 
-        /// memory increment mode
-        /// Defines the increment mode for each DMA transfer to the identified memory.
-        /// In memory-to-memory mode, this field identifies the memory source if DIR = 1 and the memory destination if DIR = 0.
-        /// In peripheral-to-peripheral mode, this field identifies the peripheral source if DIR = 1 and the peripheral destination if DIR = 0.
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 7..<8)
         public var minc: MINC
 
-        /// peripheral size
-        /// Defines the data size of each DMA transfer to the identified peripheral.
-        /// In memory-to-memory mode, this field identifies the memory destination if DIR = 1 and the memory source if DIR = 0.
-        /// In peripheral-to-peripheral mode, this field identifies the peripheral destination if DIR = 1 and the peripheral source if DIR = 0.
-        /// Note: this field is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 8..<10)
         public var psize: PSIZE
 
-        /// memory size
-        /// Defines the data size of each DMA transfer to the identified memory.
-        /// In memory-to-memory mode, this field identifies the memory source if DIR = 1 and the memory destination if DIR = 0.
-        /// In peripheral-to-peripheral mode, this field identifies the peripheral source if DIR = 1 and the peripheral destination if DIR = 0.
-        /// Note: this field is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 10..<12)
         public var msize: MSIZE
 
-        /// priority level
-        /// Note: this field is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 12..<14)
         public var pl: PL
 
-        /// memory-to-memory mode
-        /// Note: this bit is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 14..<15)
         public var mem2mem: MEM2MEM
@@ -578,14 +374,6 @@ extension DMA {
     /// DMA channel 3 number of data to transfer register
     @Register(bitWidth: 32)
     public struct CNDTR3 {
-        /// number of data to transfer (0 to 216 - 1)
-        /// This field is updated by hardware when the channel is enabled:
-        /// It is decremented after each single DMA ‘read followed by write’ transfer, indicating the remaining amount of data items to transfer.
-        /// It is kept at zero when the programmed amount of data to transfer is reached, if the channel is not in circular mode (CIRC = 0 in the DMA_CCRx register).
-        /// It is reloaded automatically by the previously programmed value, when the transfer is complete, if the channel is in circular mode (CIRC = 1).
-        /// If this field is zero, no transfer can be served whatever the channel status (enabled or not).
-        /// Note: this field is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 0..<16)
         public var ndt: NDT
@@ -594,14 +382,6 @@ extension DMA {
     /// DMA channel 3 peripheral address register
     @Register(bitWidth: 32)
     public struct CPAR3 {
-        /// peripheral address
-        /// It contains the base address of the peripheral data register from/to which the data will be read/written.
-        /// When PSIZE[1:0] = 01 (16 bits), bit 0 of PA[31:0] is ignored. Access is automatically aligned to a half-word address.
-        /// When PSIZE = 10 (32 bits), bits 1 and 0 of PA[31:0] are ignored. Access is automatically aligned to a word address.
-        /// In memory-to-memory mode, this register identifies the memory destination address if DIR = 1 and the memory source address if DIR = 0.
-        /// In peripheral-to-peripheral mode, this register identifies the peripheral destination address DIR = 1 and the peripheral source address if DIR = 0.
-        /// Note: this register is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 0..<32)
         public var pa: PA
@@ -610,14 +390,6 @@ extension DMA {
     /// DMA channel 3 memory address register
     @Register(bitWidth: 32)
     public struct CMAR3 {
-        /// peripheral address
-        /// It contains the base address of the memory from/to which the data will be read/written.
-        /// When MSIZE[1:0] = 01 (16 bits), bit 0 of MA[31:0] is ignored. Access is automatically aligned to a half-word address.
-        /// When MSIZE = 10 (32 bits), bits 1 and 0 of MA[31:0] are ignored. Access is automatically aligned to a word address.
-        /// In memory-to-memory mode, this register identifies the memory source address if DIR = 1 and the memory destination address if DIR = 0.
-        /// In peripheral-to-peripheral mode, this register identifies the peripheral source address DIR = 1 and the peripheral destination address if DIR = 0.
-        /// Note: this register is set and cleared by software.
-        /// It must not be written when the channel is enabled (EN = 1).
         /// It is not read-only when the channel is enabled (EN = 1).
         @ReadWrite(bits: 0..<32)
         public var ma: MA

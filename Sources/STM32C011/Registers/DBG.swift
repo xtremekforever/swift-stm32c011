@@ -26,12 +26,10 @@ extension DBG {
     /// DBG device ID code register
     @Register(bitWidth: 32)
     public struct DBG_IDCODE {
-        /// Device identifier
         /// This bitfield indicates the device ID.
         @ReadOnly(bits: 0..<12)
         public var dev_id: DEV_ID
 
-        /// Revision identifier
         /// This bitfield indicates the revision of the device.
         @ReadOnly(bits: 16..<32)
         public var rev_id: REV_ID
@@ -52,22 +50,18 @@ extension DBG {
     /// DBG APB freeze register 1
     @Register(bitWidth: 32)
     public struct DBG_APB_FZ1 {
-        /// Clocking of TIM3 counter when the core is halted
         /// This bit enables/disables the clock to the counter of TIM3 when the core is halted:
         @ReadWrite(bits: 1..<2)
         public var dbg_tim3_stop: DBG_TIM3_STOP
 
-        /// Clocking of RTC counter when the core is halted
         /// This bit enables/disables the clock to the counter of RTC when the core is halted:
         @ReadWrite(bits: 10..<11)
         public var dbg_rtc_stop: DBG_RTC_STOP
 
-        /// Clocking of WWDG counter when the core is halted
         /// This bit enables/disables the clock to the counter of WWDG when the core is halted:
         @ReadWrite(bits: 11..<12)
         public var dbg_wwdg_stop: DBG_WWDG_STOP
 
-        /// Clocking of IWDG counter when the core is halted
         /// This bit enables/disables the clock to the counter of IWDG when the core is halted:
         @ReadWrite(bits: 12..<13)
         public var dbg_iwdg_stop: DBG_IWDG_STOP
@@ -80,22 +74,18 @@ extension DBG {
     /// DBG APB freeze register 2
     @Register(bitWidth: 32)
     public struct DBG_APB_FZ2 {
-        /// Clocking of TIM1 counter when the core is halted
         /// This bit enables/disables the clock to the counter of TIM1 when the core is halted:
         @ReadWrite(bits: 11..<12)
         public var dbg_tim1_stop: DBG_TIM1_STOP
 
-        /// Clocking of TIM14 counter when the core is halted
         /// This bit enables/disables the clock to the counter of TIM14 when the core is halted:
         @ReadWrite(bits: 15..<16)
         public var dbg_tim14_stop: DBG_TIM14_STOP
 
-        /// Clocking of TIM16 counter when the core is halted
         /// This bit enables/disables the clock to the counter of TIM16 when the core is halted:
         @ReadWrite(bits: 17..<18)
         public var dbg_tim16_stop: DBG_TIM16_STOP
 
-        /// Clocking of TIM17 counter when the core is halted
         /// This bit enables/disables the clock to the counter of TIM17 when the core is halted:
         @ReadWrite(bits: 18..<19)
         public var dbg_tim17_stop: DBG_TIM17_STOP
