@@ -54,82 +54,66 @@ extension EXTI {
     /// EXTI rising trigger selection register
     @Register(bitWidth: 32)
     public struct RTSR1 {
-        /// Rising trigger event configuration bit of configurable line x (x = 15 to 0)
         /// Each bit enables/disables the rising edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 0..<1)
         public var rt0: RT0
 
-        /// Rising trigger event configuration bit of configurable line x (x = 15 to 0)
         /// Each bit enables/disables the rising edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 1..<2)
         public var rt1: RT1
 
-        /// Rising trigger event configuration bit of configurable line x (x = 15 to 0)
         /// Each bit enables/disables the rising edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 2..<3)
         public var rt2: RT2
 
-        /// Rising trigger event configuration bit of configurable line x (x = 15 to 0)
         /// Each bit enables/disables the rising edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 3..<4)
         public var rt3: RT3
 
-        /// Rising trigger event configuration bit of configurable line x (x = 15 to 0)
         /// Each bit enables/disables the rising edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 4..<5)
         public var rt4: RT4
 
-        /// Rising trigger event configuration bit of configurable line x (x = 15 to 0)
         /// Each bit enables/disables the rising edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 5..<6)
         public var rt5: RT5
 
-        /// Rising trigger event configuration bit of configurable line x (x = 15 to 0)
         /// Each bit enables/disables the rising edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 6..<7)
         public var rt6: RT6
 
-        /// Rising trigger event configuration bit of configurable line x (x = 15 to 0)
         /// Each bit enables/disables the rising edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 7..<8)
         public var rt7: RT7
 
-        /// Rising trigger event configuration bit of configurable line x (x = 15 to 0)
         /// Each bit enables/disables the rising edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 8..<9)
         public var rt8: RT8
 
-        /// Rising trigger event configuration bit of configurable line x (x = 15 to 0)
         /// Each bit enables/disables the rising edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 9..<10)
         public var rt9: RT9
 
-        /// Rising trigger event configuration bit of configurable line x (x = 15 to 0)
         /// Each bit enables/disables the rising edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 10..<11)
         public var rt10: RT10
 
-        /// Rising trigger event configuration bit of configurable line x (x = 15 to 0)
         /// Each bit enables/disables the rising edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 11..<12)
         public var rt11: RT11
 
-        /// Rising trigger event configuration bit of configurable line x (x = 15 to 0)
         /// Each bit enables/disables the rising edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 12..<13)
         public var rt12: RT12
 
-        /// Rising trigger event configuration bit of configurable line x (x = 15 to 0)
         /// Each bit enables/disables the rising edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 13..<14)
         public var rt13: RT13
 
-        /// Rising trigger event configuration bit of configurable line x (x = 15 to 0)
         /// Each bit enables/disables the rising edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 14..<15)
         public var rt14: RT14
 
-        /// Rising trigger event configuration bit of configurable line x (x = 15 to 0)
         /// Each bit enables/disables the rising edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 15..<16)
         public var rt15: RT15
@@ -138,82 +122,66 @@ extension EXTI {
     /// EXTI falling trigger selection register 1
     @Register(bitWidth: 32)
     public struct FTSR1 {
-        /// Falling trigger event configuration bit of configurable line x (x = 15 to 0).
         /// Each bit enables/disables the falling edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 0..<1)
         public var ft0: FT0
 
-        /// Falling trigger event configuration bit of configurable line x (x = 15 to 0).
         /// Each bit enables/disables the falling edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 1..<2)
         public var ft1: FT1
 
-        /// Falling trigger event configuration bit of configurable line x (x = 15 to 0).
         /// Each bit enables/disables the falling edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 2..<3)
         public var ft2: FT2
 
-        /// Falling trigger event configuration bit of configurable line x (x = 15 to 0).
         /// Each bit enables/disables the falling edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 3..<4)
         public var ft3: FT3
 
-        /// Falling trigger event configuration bit of configurable line x (x = 15 to 0).
         /// Each bit enables/disables the falling edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 4..<5)
         public var ft4: FT4
 
-        /// Falling trigger event configuration bit of configurable line x (x = 15 to 0).
         /// Each bit enables/disables the falling edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 5..<6)
         public var ft5: FT5
 
-        /// Falling trigger event configuration bit of configurable line x (x = 15 to 0).
         /// Each bit enables/disables the falling edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 6..<7)
         public var ft6: FT6
 
-        /// Falling trigger event configuration bit of configurable line x (x = 15 to 0).
         /// Each bit enables/disables the falling edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 7..<8)
         public var ft7: FT7
 
-        /// Falling trigger event configuration bit of configurable line x (x = 15 to 0).
         /// Each bit enables/disables the falling edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 8..<9)
         public var ft8: FT8
 
-        /// Falling trigger event configuration bit of configurable line x (x = 15 to 0).
         /// Each bit enables/disables the falling edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 9..<10)
         public var ft9: FT9
 
-        /// Falling trigger event configuration bit of configurable line x (x = 15 to 0).
         /// Each bit enables/disables the falling edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 10..<11)
         public var ft10: FT10
 
-        /// Falling trigger event configuration bit of configurable line x (x = 15 to 0).
         /// Each bit enables/disables the falling edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 11..<12)
         public var ft11: FT11
 
-        /// Falling trigger event configuration bit of configurable line x (x = 15 to 0).
         /// Each bit enables/disables the falling edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 12..<13)
         public var ft12: FT12
 
-        /// Falling trigger event configuration bit of configurable line x (x = 15 to 0).
         /// Each bit enables/disables the falling edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 13..<14)
         public var ft13: FT13
 
-        /// Falling trigger event configuration bit of configurable line x (x = 15 to 0).
         /// Each bit enables/disables the falling edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 14..<15)
         public var ft14: FT14
 
-        /// Falling trigger event configuration bit of configurable line x (x = 15 to 0).
         /// Each bit enables/disables the falling edge trigger for the event and interrupt on the corresponding line.
         @ReadWrite(bits: 15..<16)
         public var ft15: FT15
@@ -222,82 +190,66 @@ extension EXTI {
     /// EXTI software interrupt event register 1
     @Register(bitWidth: 32)
     public struct SWIER1 {
-        /// Software rising edge event trigger on line x (x = 15 to 0)
         /// Setting of any bit by software triggers a rising edge event on the corresponding line x, resulting in an interrupt, independently of EXTI_RTSR1 and EXTI_FTSR1 settings. The bits are automatically cleared by HW. Reading of any bit always returns 0.
         @ReadWrite(bits: 0..<1)
         public var swi0: SWI0
 
-        /// Software rising edge event trigger on line x (x = 15 to 0)
         /// Setting of any bit by software triggers a rising edge event on the corresponding line x, resulting in an interrupt, independently of EXTI_RTSR1 and EXTI_FTSR1 settings. The bits are automatically cleared by HW. Reading of any bit always returns 0.
         @ReadWrite(bits: 1..<2)
         public var swi1: SWI1
 
-        /// Software rising edge event trigger on line x (x = 15 to 0)
         /// Setting of any bit by software triggers a rising edge event on the corresponding line x, resulting in an interrupt, independently of EXTI_RTSR1 and EXTI_FTSR1 settings. The bits are automatically cleared by HW. Reading of any bit always returns 0.
         @ReadWrite(bits: 2..<3)
         public var swi2: SWI2
 
-        /// Software rising edge event trigger on line x (x = 15 to 0)
         /// Setting of any bit by software triggers a rising edge event on the corresponding line x, resulting in an interrupt, independently of EXTI_RTSR1 and EXTI_FTSR1 settings. The bits are automatically cleared by HW. Reading of any bit always returns 0.
         @ReadWrite(bits: 3..<4)
         public var swi3: SWI3
 
-        /// Software rising edge event trigger on line x (x = 15 to 0)
         /// Setting of any bit by software triggers a rising edge event on the corresponding line x, resulting in an interrupt, independently of EXTI_RTSR1 and EXTI_FTSR1 settings. The bits are automatically cleared by HW. Reading of any bit always returns 0.
         @ReadWrite(bits: 4..<5)
         public var swi4: SWI4
 
-        /// Software rising edge event trigger on line x (x = 15 to 0)
         /// Setting of any bit by software triggers a rising edge event on the corresponding line x, resulting in an interrupt, independently of EXTI_RTSR1 and EXTI_FTSR1 settings. The bits are automatically cleared by HW. Reading of any bit always returns 0.
         @ReadWrite(bits: 5..<6)
         public var swi5: SWI5
 
-        /// Software rising edge event trigger on line x (x = 15 to 0)
         /// Setting of any bit by software triggers a rising edge event on the corresponding line x, resulting in an interrupt, independently of EXTI_RTSR1 and EXTI_FTSR1 settings. The bits are automatically cleared by HW. Reading of any bit always returns 0.
         @ReadWrite(bits: 6..<7)
         public var swi6: SWI6
 
-        /// Software rising edge event trigger on line x (x = 15 to 0)
         /// Setting of any bit by software triggers a rising edge event on the corresponding line x, resulting in an interrupt, independently of EXTI_RTSR1 and EXTI_FTSR1 settings. The bits are automatically cleared by HW. Reading of any bit always returns 0.
         @ReadWrite(bits: 7..<8)
         public var swi7: SWI7
 
-        /// Software rising edge event trigger on line x (x = 15 to 0)
         /// Setting of any bit by software triggers a rising edge event on the corresponding line x, resulting in an interrupt, independently of EXTI_RTSR1 and EXTI_FTSR1 settings. The bits are automatically cleared by HW. Reading of any bit always returns 0.
         @ReadWrite(bits: 8..<9)
         public var swi8: SWI8
 
-        /// Software rising edge event trigger on line x (x = 15 to 0)
         /// Setting of any bit by software triggers a rising edge event on the corresponding line x, resulting in an interrupt, independently of EXTI_RTSR1 and EXTI_FTSR1 settings. The bits are automatically cleared by HW. Reading of any bit always returns 0.
         @ReadWrite(bits: 9..<10)
         public var swi9: SWI9
 
-        /// Software rising edge event trigger on line x (x = 15 to 0)
         /// Setting of any bit by software triggers a rising edge event on the corresponding line x, resulting in an interrupt, independently of EXTI_RTSR1 and EXTI_FTSR1 settings. The bits are automatically cleared by HW. Reading of any bit always returns 0.
         @ReadWrite(bits: 10..<11)
         public var swi10: SWI10
 
-        /// Software rising edge event trigger on line x (x = 15 to 0)
         /// Setting of any bit by software triggers a rising edge event on the corresponding line x, resulting in an interrupt, independently of EXTI_RTSR1 and EXTI_FTSR1 settings. The bits are automatically cleared by HW. Reading of any bit always returns 0.
         @ReadWrite(bits: 11..<12)
         public var swi11: SWI11
 
-        /// Software rising edge event trigger on line x (x = 15 to 0)
         /// Setting of any bit by software triggers a rising edge event on the corresponding line x, resulting in an interrupt, independently of EXTI_RTSR1 and EXTI_FTSR1 settings. The bits are automatically cleared by HW. Reading of any bit always returns 0.
         @ReadWrite(bits: 12..<13)
         public var swi12: SWI12
 
-        /// Software rising edge event trigger on line x (x = 15 to 0)
         /// Setting of any bit by software triggers a rising edge event on the corresponding line x, resulting in an interrupt, independently of EXTI_RTSR1 and EXTI_FTSR1 settings. The bits are automatically cleared by HW. Reading of any bit always returns 0.
         @ReadWrite(bits: 13..<14)
         public var swi13: SWI13
 
-        /// Software rising edge event trigger on line x (x = 15 to 0)
         /// Setting of any bit by software triggers a rising edge event on the corresponding line x, resulting in an interrupt, independently of EXTI_RTSR1 and EXTI_FTSR1 settings. The bits are automatically cleared by HW. Reading of any bit always returns 0.
         @ReadWrite(bits: 14..<15)
         public var swi14: SWI14
 
-        /// Software rising edge event trigger on line x (x = 15 to 0)
         /// Setting of any bit by software triggers a rising edge event on the corresponding line x, resulting in an interrupt, independently of EXTI_RTSR1 and EXTI_FTSR1 settings. The bits are automatically cleared by HW. Reading of any bit always returns 0.
         @ReadWrite(bits: 15..<16)
         public var swi15: SWI15
@@ -306,82 +258,66 @@ extension EXTI {
     /// EXTI rising edge pending register 1
     @Register(bitWidth: 32)
     public struct RPR1 {
-        /// Rising edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a rising edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 0..<1)
         public var rpif0: RPIF0
 
-        /// Rising edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a rising edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 1..<2)
         public var rpif1: RPIF1
 
-        /// Rising edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a rising edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 2..<3)
         public var rpif2: RPIF2
 
-        /// Rising edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a rising edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 3..<4)
         public var rpif3: RPIF3
 
-        /// Rising edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a rising edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 4..<5)
         public var rpif4: RPIF4
 
-        /// Rising edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a rising edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 5..<6)
         public var rpif5: RPIF5
 
-        /// Rising edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a rising edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 6..<7)
         public var rpif6: RPIF6
 
-        /// Rising edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a rising edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 7..<8)
         public var rpif7: RPIF7
 
-        /// Rising edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a rising edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 8..<9)
         public var rpif8: RPIF8
 
-        /// Rising edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a rising edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 9..<10)
         public var rpif9: RPIF9
 
-        /// Rising edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a rising edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 10..<11)
         public var rpif10: RPIF10
 
-        /// Rising edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a rising edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 11..<12)
         public var rpif11: RPIF11
 
-        /// Rising edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a rising edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 12..<13)
         public var rpif12: RPIF12
 
-        /// Rising edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a rising edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 13..<14)
         public var rpif13: RPIF13
 
-        /// Rising edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a rising edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 14..<15)
         public var rpif14: RPIF14
 
-        /// Rising edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a rising edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 15..<16)
         public var rpif15: RPIF15
@@ -390,82 +326,66 @@ extension EXTI {
     /// EXTI falling edge pending register 1
     @Register(bitWidth: 32)
     public struct FPR1 {
-        /// Falling edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a falling edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 0..<1)
         public var fpif0: FPIF0
 
-        /// Falling edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a falling edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 1..<2)
         public var fpif1: FPIF1
 
-        /// Falling edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a falling edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 2..<3)
         public var fpif2: FPIF2
 
-        /// Falling edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a falling edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 3..<4)
         public var fpif3: FPIF3
 
-        /// Falling edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a falling edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 4..<5)
         public var fpif4: FPIF4
 
-        /// Falling edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a falling edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 5..<6)
         public var fpif5: FPIF5
 
-        /// Falling edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a falling edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 6..<7)
         public var fpif6: FPIF6
 
-        /// Falling edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a falling edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 7..<8)
         public var fpif7: FPIF7
 
-        /// Falling edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a falling edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 8..<9)
         public var fpif8: FPIF8
 
-        /// Falling edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a falling edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 9..<10)
         public var fpif9: FPIF9
 
-        /// Falling edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a falling edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 10..<11)
         public var fpif10: FPIF10
 
-        /// Falling edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a falling edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 11..<12)
         public var fpif11: FPIF11
 
-        /// Falling edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a falling edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 12..<13)
         public var fpif12: FPIF12
 
-        /// Falling edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a falling edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 13..<14)
         public var fpif13: FPIF13
 
-        /// Falling edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a falling edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 14..<15)
         public var fpif14: FPIF14
 
-        /// Falling edge event pending for configurable line x (x = 15 to 0)
         /// Each bit is set upon a falling edge event generated by hardware or by software (through the EXTI_SWIER1 register) on the corresponding line. Each bit is cleared by writing 1 into it.
         @ReadWrite(bits: 15..<16)
         public var fpif15: FPIF15
@@ -474,8 +394,6 @@ extension EXTI {
     /// EXTI external interrupt selection register
     @Register(bitWidth: 32)
     public struct EXTICR1 {
-        /// EXTIm GPIO port selection (m = 4 * (x - 1))
-        /// These bits are written by software to select the source input for EXTIm external interrupt.
         /// Other: reserved
         @ReadWrite(bits: 0..<8)
         public var exti0: EXTI0
@@ -496,8 +414,6 @@ extension EXTI {
     /// EXTI external interrupt selection register
     @Register(bitWidth: 32)
     public struct EXTICR2 {
-        /// EXTIm GPIO port selection (m = 4 * (x - 1))
-        /// These bits are written by software to select the source input for EXTIm external interrupt.
         /// Other: reserved
         @ReadWrite(bits: 0..<8)
         public var exti0: EXTI0
@@ -518,8 +434,6 @@ extension EXTI {
     /// EXTI external interrupt selection register
     @Register(bitWidth: 32)
     public struct EXTICR3 {
-        /// EXTIm GPIO port selection (m = 4 * (x - 1))
-        /// These bits are written by software to select the source input for EXTIm external interrupt.
         /// Other: reserved
         @ReadWrite(bits: 0..<8)
         public var exti0: EXTI0
@@ -540,8 +454,6 @@ extension EXTI {
     /// EXTI external interrupt selection register
     @Register(bitWidth: 32)
     public struct EXTICR4 {
-        /// EXTIm GPIO port selection (m = 4 * (x - 1))
-        /// These bits are written by software to select the source input for EXTIm external interrupt.
         /// Other: reserved
         @ReadWrite(bits: 0..<8)
         public var exti0: EXTI0

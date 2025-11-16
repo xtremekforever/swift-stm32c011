@@ -34,7 +34,6 @@ extension DMAMUX {
     /// DMA Multiplexer Channel %s Control register
     @Register(bitWidth: 32)
     public struct CCR {
-        /// DMA request identification
         /// Selects the input DMA request. See the DMAMUX table about assignments of multiplexer inputs to resources.
         @ReadWrite(bits: 0..<6)
         public var dmareq_id: DMAREQ_ID
@@ -51,18 +50,14 @@ extension DMAMUX {
         @ReadWrite(bits: 16..<17)
         public var se: SE
 
-        /// Synchronization polarity
         /// Defines the edge polarity of the selected synchronization input:
         @ReadWrite(bits: 17..<19)
         public var spol: SPOL
 
-        /// Number of DMA requests minus 1 to forward
-        /// Defines the number of DMA requests to forward to the DMA controller after a synchronization event, and/or the number of DMA requests before an output event is generated.
         /// This field shall only be written when both SE and EGE bits are low.
         @ReadWrite(bits: 19..<24)
         public var nbreq: NBREQ
 
-        /// Synchronization identification
         /// Selects the synchronization input (see inputs to resources).
         @ReadWrite(bits: 24..<29)
         public var sync_id: SYNC_ID
@@ -71,20 +66,14 @@ extension DMAMUX {
     /// DMAMUX request line multiplexer interrupt channel status register
     @Register(bitWidth: 32)
     public struct CSR {
-        /// Synchronization overrun event flag
-        /// The flag is set when a synchronization event occurs on a DMA request line multiplexer channel x, while the DMA request counter value is lower than NBREQ.
         /// The flag is cleared by writing 1 to the corresponding CSOFx bit in DMAMUX_CFR register.
         @ReadOnly(bits: 0..<1)
         public var sof0: SOF0
 
-        /// Synchronization overrun event flag
-        /// The flag is set when a synchronization event occurs on a DMA request line multiplexer channel x, while the DMA request counter value is lower than NBREQ.
         /// The flag is cleared by writing 1 to the corresponding CSOFx bit in DMAMUX_CFR register.
         @ReadOnly(bits: 1..<2)
         public var sof1: SOF1
 
-        /// Synchronization overrun event flag
-        /// The flag is set when a synchronization event occurs on a DMA request line multiplexer channel x, while the DMA request counter value is lower than NBREQ.
         /// The flag is cleared by writing 1 to the corresponding CSOFx bit in DMAMUX_CFR register.
         @ReadOnly(bits: 2..<3)
         public var sof2: SOF2
@@ -93,17 +82,14 @@ extension DMAMUX {
     /// DMAMUX request line multiplexer interrupt clear flag register
     @Register(bitWidth: 32)
     public struct CFR {
-        /// Clear synchronization overrun event flag
         /// Writing 1 in each bit clears the corresponding overrun flag SOFx in the DMAMUX_CSR register.
         @WriteOnly(bits: 0..<1)
         public var csof0: CSOF0
 
-        /// Clear synchronization overrun event flag
         /// Writing 1 in each bit clears the corresponding overrun flag SOFx in the DMAMUX_CSR register.
         @WriteOnly(bits: 1..<2)
         public var csof1: CSOF1
 
-        /// Clear synchronization overrun event flag
         /// Writing 1 in each bit clears the corresponding overrun flag SOFx in the DMAMUX_CSR register.
         @WriteOnly(bits: 2..<3)
         public var csof2: CSOF2
@@ -112,7 +98,6 @@ extension DMAMUX {
     /// DMAMUX request generator channel %s configuration register
     @Register(bitWidth: 32)
     public struct RGCR {
-        /// Signal identification
         /// Selects the DMA request trigger input used for the channel x of the DMA request generator
         @ReadWrite(bits: 0..<5)
         public var sig_id: SIG_ID
@@ -125,13 +110,10 @@ extension DMAMUX {
         @ReadWrite(bits: 16..<17)
         public var ge: GE
 
-        /// DMA request generator trigger polarity
         /// Defines the edge polarity of the selected trigger input
         @ReadWrite(bits: 17..<19)
         public var gpol: GPOL
 
-        /// Number of DMA requests to be generated (minus 1)
-        /// Defines the number of DMA requests to be generated after a trigger event. The actual number of generated DMA requests is GNBREQ +1.
         /// Note: This field must be written only when GE bit is disabled.
         @ReadWrite(bits: 19..<24)
         public var gnbreq: GNBREQ
@@ -140,26 +122,18 @@ extension DMAMUX {
     /// DMAMUX request generator interrupt status register
     @Register(bitWidth: 32)
     public struct RGSR {
-        /// Trigger overrun event flag
-        /// The flag is set when a new trigger event occurs on DMA request generator channel x, before the request counter underrun (the internal request counter programmed via the GNBREQ field of the DMAMUX_RGxCR register).
         /// The flag is cleared by writing 1 to the corresponding COFx bit in the DMAMUX_RGCFR register.
         @ReadOnly(bits: 0..<1)
         public var of0: OF0
 
-        /// Trigger overrun event flag
-        /// The flag is set when a new trigger event occurs on DMA request generator channel x, before the request counter underrun (the internal request counter programmed via the GNBREQ field of the DMAMUX_RGxCR register).
         /// The flag is cleared by writing 1 to the corresponding COFx bit in the DMAMUX_RGCFR register.
         @ReadOnly(bits: 1..<2)
         public var of1: OF1
 
-        /// Trigger overrun event flag
-        /// The flag is set when a new trigger event occurs on DMA request generator channel x, before the request counter underrun (the internal request counter programmed via the GNBREQ field of the DMAMUX_RGxCR register).
         /// The flag is cleared by writing 1 to the corresponding COFx bit in the DMAMUX_RGCFR register.
         @ReadOnly(bits: 2..<3)
         public var of2: OF2
 
-        /// Trigger overrun event flag
-        /// The flag is set when a new trigger event occurs on DMA request generator channel x, before the request counter underrun (the internal request counter programmed via the GNBREQ field of the DMAMUX_RGxCR register).
         /// The flag is cleared by writing 1 to the corresponding COFx bit in the DMAMUX_RGCFR register.
         @ReadOnly(bits: 3..<4)
         public var of3: OF3
@@ -168,22 +142,18 @@ extension DMAMUX {
     /// DMAMUX request generator interrupt clear flag register
     @Register(bitWidth: 32)
     public struct RGCFR {
-        /// Clear trigger overrun event flag
         /// Writing 1 in each bit clears the corresponding overrun flag OFx in the DMAMUX_RGSR register.
         @WriteOnly(bits: 0..<1)
         public var cof0: COF0
 
-        /// Clear trigger overrun event flag
         /// Writing 1 in each bit clears the corresponding overrun flag OFx in the DMAMUX_RGSR register.
         @WriteOnly(bits: 1..<2)
         public var cof1: COF1
 
-        /// Clear trigger overrun event flag
         /// Writing 1 in each bit clears the corresponding overrun flag OFx in the DMAMUX_RGSR register.
         @WriteOnly(bits: 2..<3)
         public var cof2: COF2
 
-        /// Clear trigger overrun event flag
         /// Writing 1 in each bit clears the corresponding overrun flag OFx in the DMAMUX_RGSR register.
         @WriteOnly(bits: 3..<4)
         public var cof3: COF3

@@ -106,18 +106,14 @@ extension SYSCFG {
     /// SYSCFG configuration register 1
     @Register(bitWidth: 32)
     public struct SYSCFG_CFGR1 {
-        /// Memory mapping selection bits
-        /// This bitfield controlled by software selects the memory internally mapped at the address 0x0000 0000. Its reset value is determined by the boot mode configuration. Refer to for more details.
         /// x0: Main Flash memory
         @ReadWrite(bits: 0..<2)
         public var mem_mode: MEM_MODE
 
-        /// PA11 pin remapping
         /// This bit is set and cleared by software. When set, it remaps the PA11 pin to operate as PA9 GPIO port, instead as PA11 GPIO port.
         @ReadWrite(bits: 3..<4)
         public var pa11_rmp: PA11_RMP
 
-        /// PA12 pin remapping
         /// This bit is set and cleared by software. When set, it remaps the PA12 pin to operate as PA10 GPIO port, instead as PA12 GPIO port.
         @ReadWrite(bits: 4..<5)
         public var pa12_rmp: PA12_RMP
@@ -126,55 +122,38 @@ extension SYSCFG {
         @ReadWrite(bits: 5..<6)
         public var ir_pol: IR_POL
 
-        /// IR Modulation Envelope signal selection
         /// This bitfield selects the signal for IR modulation envelope:
         @ReadWrite(bits: 6..<8)
         public var ir_mod: IR_MOD
 
-        /// Fast Mode Plus (FM+) enable for PB6
-        /// This bit is set and cleared by software. It enables I2C FM+ driving capability on PB6 I/O port.
         /// With this bit in disable state, the I2C FM+ driving capability on this I/O port can be enabled through one of I2Cx_FMP bits. When I2C FM+ is enabled, the speed control is ignored.
         @ReadWrite(bits: 16..<17)
         public var i2c_pb6_fmp: I2C_PB6_FMP
 
-        /// Fast Mode Plus (FM+) enable for PB7
-        /// This bit is set and cleared by software. It enables I2C FM+ driving capability on PB7 I/O port.
         /// With this bit in disable state, the I2C FM+ driving capability on this I/O port can be enabled through one of I2Cx_FMP bits. When I2C FM+ is enabled, the speed control is ignored.
         @ReadWrite(bits: 17..<18)
         public var i2c_pb7_fmp: I2C_PB7_FMP
 
-        /// Fast Mode Plus (FM+) enable for PB8
-        /// This bit is set and cleared by software. It enables I2C FM+ driving capability on PB8 I/O port.
         /// With this bit in disable state, the I2C FM+ driving capability on this I/O port can be enabled through one of I2Cx_FMP bits. When I2C FM+ is enabled, the speed control is ignored.
         @ReadWrite(bits: 18..<19)
         public var i2c_pb8_fmp: I2C_PB8_FMP
 
-        /// Fast Mode Plus (FM+) enable for PB9
-        /// This bit is set and cleared by software. It enables I2C FM+ driving capability on PB9 I/O port.
         /// With this bit in disable state, the I2C FM+ driving capability on this I/O port can be enabled through one of I2Cx_FMP bits. When I2C FM+ is enabled, the speed control is ignored.
         @ReadWrite(bits: 19..<20)
         public var i2c_pb9_fmp: I2C_PB9_FMP
 
-        /// Fast Mode Plus (FM+) enable for I2C1
-        /// This bit is set and cleared by software. It enables I2C FM+ driving capability on I/O ports configured as I2C1 through GPIOx_AFR registers.
         /// With this bit in disable state, the I2C FM+ driving capability on I/O ports configured as I2C1 can be enabled through their corresponding I2Cx_FMP bit. When I2C FM+ is enabled, the speed control is ignored.
         @ReadWrite(bits: 20..<21)
         public var i2c1_fmp: I2C1_FMP
 
-        /// Fast Mode Plus (FM+) enable for PA9
-        /// This bit is set and cleared by software. It enables I2C FM+ driving capability on PA9 I/O port.
         /// With this bit in disable state, the I2C FM+ driving capability on this I/O port can be enabled through one of I2Cx_FMP bits. When I2C FM+ is enabled, the speed control is ignored.
         @ReadWrite(bits: 22..<23)
         public var i2c_pa9_fmp: I2C_PA9_FMP
 
-        /// Fast Mode Plus (FM+) enable for PA10
-        /// This bit is set and cleared by software. It enables I2C FM+ driving capability on PA10 I/O port.
         /// With this bit in disable state, the I2C FM+ driving capability on this I/O port can be enabled through one of I2Cx_FMP bits. When I2C FM+ is enabled, the speed control is ignored.
         @ReadWrite(bits: 23..<24)
         public var i2c_pa10_fmp: I2C_PA10_FMP
 
-        /// Fast Mode Plus (FM+) enable for PC14
-        /// This bit is set and cleared by software. It enables I2C FM+ driving capability on PC14 I/O port.
         /// With this bit in disable state, the I2C FM+ driving capability on this I/O port can be enabled through one of I2Cx_FMP bits. When I2C FM+ is enabled, the speed control is ignored.
         @ReadWrite(bits: 24..<25)
         public var i2c_pc14_fmp: I2C_PC14_FMP
@@ -183,8 +162,7 @@ extension SYSCFG {
     /// SYSCFG configuration register 2
     @Register(bitWidth: 32)
     public struct SYSCFG_CFGR2 {
-        /// Cortex<Superscript>�<Default � Font>-M0+ LOCKUP enable
-        /// This bit is set by software and cleared by system reset. When set, it enables the connection of Cortex<Superscript>�<Default � Font>-M0+ LOCKUP (HardFault) output to the TIM1/16/17 Break input.
+        /// -M0+ LOCKUP (HardFault) output to the TIM1/16/17 Break input.
         @ReadWrite(bits: 0..<1)
         public var lockup_lock: LOCKUP_LOCK
     }
@@ -192,42 +170,26 @@ extension SYSCFG {
     /// SYSCFG configuration register 3
     @Register(bitWidth: 32)
     public struct SYSCFG_CFGR3 {
-        /// Pin GPIO multiplexer 0
-        /// This bit is set by software and cleared by system reset. It assigns a GPIO to a pin.
-        /// 1x: Reserved
-        /// Pin F2 of WLCSP14 package GPIO assignment
         /// 1x: Reserved
         @ReadWrite(bits: 0..<2)
         public var pinmux0: PINMUX0
 
-        /// Pin GPIO multiplexer 1
-        /// This bit is set by software and cleared by system reset. It assigns a GPIO to a pin.
         /// 1x: Reserved
         @ReadWrite(bits: 2..<4)
         public var pinmux1: PINMUX1
 
-        /// Pin GPIO multiplexer 2
-        /// This bit is set by software and cleared by system reset. It assigns a GPIO to a pin.
-        /// 1x: Reserved
         /// 1x: Reserved
         @ReadWrite(bits: 4..<6)
         public var pinmux2: PINMUX2
 
-        /// Pin GPIO multiplexer 3
-        /// This bit is set by software and cleared by system reset. It assigns a GPIO to a pin.
         /// 1x: Reserved
         @ReadWrite(bits: 6..<8)
         public var pinmux3: PINMUX3
 
-        /// Pin GPIO multiplexer 4
-        /// This bit is set by software and cleared by system reset. It assigns a GPIO to a pin.
-        /// 1x: Reserved
         /// 1x: Reserved
         @ReadWrite(bits: 8..<10)
         public var pinmux4: PINMUX4
 
-        /// Pin GPIO multiplexer 5
-        /// This bit is set by software and cleared by system reset. It assigns a GPIO to a pin.
         /// 1x: Reserved
         @ReadWrite(bits: 10..<12)
         public var pinmux5: PINMUX5

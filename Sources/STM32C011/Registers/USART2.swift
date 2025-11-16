@@ -2,4 +2,6 @@
 
 import MMIO
 
+/// USART register block
 public typealias USART2 = USART1
+
